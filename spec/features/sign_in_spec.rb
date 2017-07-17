@@ -1,47 +1,72 @@
 require "rails_helper"
 
-feature "user signs in" do
-# As as am user
-#  I want to sign in
-#  So that i can track my breakable toy progress
+feature "user signs in",
+%Q{As a user
+ I want to sign in
+ So that i can check date spots} do
 
 # Acceptance Criteria:
-#  [] If I specify a valid, previously registered email and password,
+#  [X] If I specify a valid, previously registered email and password,
 #      I am authenticated and I gain access to the system
-#  [] If i specify an invalid email and password, I remain authenticated
-#  [] If i am already signed in, I can't sign in again
+#  [X] If i specify an invalid email and password, I remain unauthenticated
+#  [X] If i am already signed in, I can't sign in again
 
 
   scenario "visitor fills out the log-in form" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
 
-    let!()
+    visit root_path
 
-    visit new_restaurant_path
-    expect(page).to have_content "New Restaurant Form"
+    click_link "Sign In"
 
-    fill_in 'Name', with: "Figaro's"
-    fill_in 'Address', with: "105 Beach St"
-    fill_in 'City', with: "Boston"
-    fill_in 'State', with: "Massachusetts"
-    fill_in 'Zip', with: "02111"
-    fill_in 'Description', with: "This old-school-style Italian deli serves breakfast fare & a range of sandwiches, roll-ups & salads."
+    expect(page).to have_content "Log in"
 
-    click_button "Add Restaurant"
+    fill_in 'Email', with: user_1.email
+    fill_in 'Password', with: user_1.password
 
-    expect(page).to have_content "Restaurant added successfully"
-    expect(page).to have_content "Figaro's"
-    expect(page).to have_content "This old-school-style Italian deli serves breakfast fare & a range of sandwiches, roll-ups & salads."
+    click_button "Log in"
+
+    expect(page).to have_content "Signed in successfully"
+    expect(page).to have_content "Sign out"
+    expect(page).not_to have_content "Sign Up"
+    expect(page).not_to have_content "Sign In"
   end
 
-  scenario "visitor does not provide proper information for a restaurant" do
-    visit new_restaurant_path
+  scenario "visitor fills out the log-in form incorrectly" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
 
-    click_button "Add Restaurant"
-    expect(page).to have_content "Name can't be blank"
-    expect(page).to have_content "Address can't be blank"
-    expect(page).to have_content "City can't be blank"
-    expect(page).to have_content "State can't be blank"
-    expect(page).to have_content "Zip can't be blank"
-    expect(page).to have_content "Zip is not a number"
+    visit root_path
+
+    click_link "Sign In"
+
+    expect(page).to have_content "Log in"
+
+    fill_in 'Email', with: "wrong@email"
+    fill_in 'Password', with: "wrong_password"
+
+    click_button "Log in"
+
+    expect(page).to have_content "Invalid Email or password"
+    expect(page).to have_content "Sign In"
+    expect(page).to have_content "Sign Up"
+  end
+
+  scenario "visitor is signed in and visits sign_in page" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+
+    visit root_path
+
+    click_link "Sign In"
+
+    expect(page).to have_content "Log in"
+
+    fill_in 'Email', with: user_1.email
+    fill_in 'Password', with: user_1.password
+
+    click_button "Log in"
+
+    visit new_user_session_path
+
+    expect(page).to have_content "You are already signed in."
   end
 end
