@@ -7,6 +7,11 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'webpacker'
+<<<<<<< HEAD
+=======
+gem 'devise'
+
+>>>>>>> e705403c026772f93257857a5947647f153cb817
 
 group :test do
   gem 'coveralls', require: false
