@@ -17,7 +17,7 @@ feature "user signs in",
 
     visit root_path
 
-    click_link "Sign In"
+    first(:link, "Sign In").click
 
     expect(page).to have_content "Log in"
 
@@ -37,7 +37,7 @@ feature "user signs in",
 
     visit root_path
 
-    click_link "Sign In"
+    first(:link, "Sign In").click
 
     expect(page).to have_content "Log in"
 
@@ -56,7 +56,7 @@ feature "user signs in",
 
     visit root_path
 
-    click_link "Sign In"
+    first(:link, "Sign In").click
 
     expect(page).to have_content "Log in"
 

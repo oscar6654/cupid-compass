@@ -14,7 +14,7 @@ feature "user signs up",
   scenario "specifying valid and required information" do
     visit root_path
 
-    click_link "Sign Up"
+    first(:link, "Sign Up").click
 
     expect(page).to have_content "Sign up"
 
@@ -35,7 +35,7 @@ feature "user signs up",
   scenario "specifying invalid and/or missing required information" do
     visit root_path
 
-    click_link "Sign Up"
+    first(:link, "Sign Up").click
 
     expect(page).to have_content "Sign up"
 
@@ -61,7 +61,7 @@ feature "user signs up",
 
     visit root_path
 
-    click_link "Sign Up"
+    first(:link, "Sign Up").click
 
     expect(page).to have_content "Sign up"
 

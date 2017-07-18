@@ -16,26 +16,25 @@
 
   <div class="row">
     <div class="input-field col s6">
-      <%= f.text_field :first_name, id: "first_name", type: "text", class: "validate", :required => true %>
-      <%= f.label :first_name ,class: "active"%>
+      <%= f.text_field :first_name, type: "text", class: "validate", :required => true %>
+      <%= f.label :first_name, class: "active"%>
     </div>
 
     <div class="input-field col s6">
-    <%= f.text_field :last_name, id: "last_name", type: "text", class: "validate", :required => true %>
+    <%= f.text_field :last_name, type: "text", class: "validate", :required => true %>
     <%= f.label :last_name ,class: "active"%>
   </div>
 </div>
 
   <div class="row">
     <div class="input-field col s12">
-      <%= f.email_field :email, id: "email", type: "text", class: "validate", :required => true %>
+      <%= f.email_field :email, type: "text", class: "validate", :required => true %>
       <%= f.label :email, class: "active" %>
     </div>
   </div>
 
   <div class="row">
     <div class="input-field col s12">
-
     <%= f.password_field :password, autocomplete: "off", :required => true %>
     <%= f.label :password ,class: "active"%>
   </div>
