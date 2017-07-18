@@ -20,4 +20,5 @@
 /public/packs
 /node_modules
 /coverage
+.yarn.lock
 .env
