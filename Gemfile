@@ -8,7 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'webpacker'
 gem 'devise'
-
+gem 'materialize-sass'
+gem 'material_icons'
 
 group :test do
   gem 'coveralls', require: false
