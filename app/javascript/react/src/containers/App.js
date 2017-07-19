@@ -10,12 +10,12 @@ const history = createBrowserHistory();
 const App = props =>{
   return(
     <div>
-    <h1> Hello from inside the computer</h1>
-    <BrowserRouter history={history}>
-      <Switch>
-        <Route exact path='/' component={NavBar} />
-      </Switch>
-    </BrowserRouter>
+      <h1> Hello from inside the computer</h1>
+      <BrowserRouter history={history}>
+        <Switch>
+          <Route exact path='/' component={NavBar} />
+        </Switch>
+      </BrowserRouter>
     </div>
   )
 }
