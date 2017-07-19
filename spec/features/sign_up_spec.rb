@@ -26,7 +26,6 @@ feature "user signs up",
 
     click_button "Sign up"
 
-    expect(page).to have_content "Welcome! You have signed up successfully."
     expect(page).to have_content "Sign out"
     expect(page).not_to have_content "Sign Up"
     expect(page).not_to have_content "Sign In"
@@ -47,7 +46,6 @@ feature "user signs up",
 
     click_button "Sign up"
 
-    expect(page).to have_content "Welcome! You have signed up successfully."
     expect(page).to have_content "Sign out"
     expect(page).not_to have_content "Sign Up"
     expect(page).not_to have_content "Sign In"
