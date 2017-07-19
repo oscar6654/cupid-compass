@@ -8,7 +8,8 @@ gem 'uglifier', '>= 1.3.0'
 gem 'jquery-rails'
 gem 'webpacker'
 gem 'devise'
-
+gem 'materialize-sass'
+gem 'material_icons'
 
 group :test do
   gem 'coveralls', require: false
@@ -29,6 +30,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
+  gem "faker", github: "stympy/faker"
 end
 
 group :production do

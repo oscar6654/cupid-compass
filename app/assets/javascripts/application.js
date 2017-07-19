@@ -11,4 +11,12 @@
 // about supported directives.
 //
 //= require rails-ujs
+//= require jquery
+//= require materialize
 //= require_tree .
+
+$(document).ready(function() {
+  Materialize.updateTextFields();
+  $(".button-collapse").sideNav();
+
+});
