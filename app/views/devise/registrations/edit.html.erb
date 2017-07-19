@@ -6,10 +6,35 @@
       </div>
     </div>
 
+    <% if current_user %>
+      <% if current_user.profile_photo.file.nil? %>
+      <div class="row">
+        <div class="col s12">
+          No Profile Photo
+        </div>
+      </div>
+      <%else%>
+        <img src=<%= current_user.profile_photo %> height="120" width="120">
+      <%end%>
+    <%end%>
+
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <div class="row">
         <div class="col s12">
           <%= devise_error_messages! %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :first_name, type: "text", class: "validate", :required => true %>
+          <%= f.label :first_name, class: "active"%>
+        </div>
+
+        <div class="input-field col s6">
+          <%= f.text_field :last_name, type: "text", class: "validate", :required => true %>
+          <%= f.label :last_name ,class: "active"%>
         </div>
       </div>
 
@@ -43,6 +68,18 @@
         <div class="input-field col s12">
         <%= f.password_field :current_password, autocomplete: "off" %>
         <%= f.label :current_password , "Current Password *" , class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="file-field input-field col s12">
+          <div class="btn">
+            <span>File</span>
+            <%= f.file_field :profile_photo, id: "upload"%>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate", placeholder="Change my Avatar">
+          </div>
         </div>
       </div>
 
