@@ -1,5 +1,6 @@
 <h1>Hello Home </h1>
 <% if current_user %>
+  <%= current_user.id %>
   <% if current_user.profile_photo.file.nil? %>
     <p>No Profile Photo </p>
   <%else%>
