@@ -10,10 +10,14 @@ gem 'webpacker'
 gem 'devise'
 gem 'materialize-sass'
 gem 'material_icons'
+gem 'carrierwave'
+gem 'fog'
+
 
 group :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
+  gem 'dotenv-rails'
 end
 
 group :development do
