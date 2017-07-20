@@ -1,0 +1,11 @@
+<h3>Hello <%= @user.first_name.capitalize %>!</h3>
+<% if current_user %>
+  <% if current_user.profile_photo.file.nil? %>
+    <p>No Profile Photo </p>
+  <%else%>
+    <img src=<%= current_user.profile_photo %> height="160" width="160">
+  <%end%>
+<%end%>
+<div class="row">
+  <%= link_to "Edit Profile", edit_user_registration_path, class: "btn waves-effect waves-light" %>
+</div>
