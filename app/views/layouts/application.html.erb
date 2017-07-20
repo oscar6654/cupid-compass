@@ -26,11 +26,17 @@
         <ul class="side-nav" id="mobile-demo">
           <% if current_user %>
             <li>
-              <div class="userView">
+              <div class="user-view">
                 <div class="background">
                   <img src="<%= asset_path('sky.jpg')%>">
                 </div>
-              <span class="white-text name"><%=link_to current_user.first_name.capitalize, current_user %> </span>
+                  <% if current_user.profile_photo.file.nil? %>
+                    <span><%= link_to image_tag("avatar.jpg", :class => "circle"), current_user %></span>
+                  <%else%>
+                    <span><%= link_to image_tag(current_user.profile_photo, :class => "circle"), current_user %></span>
+                  <%end%>
+                  <span class="white-text name"><%=link_to current_user.first_name.capitalize, current_user %> </span>
+                  <span class="white-text email"><%=link_to current_user.email, current_user %> </span>
               </div>
             </li>
             <li><%= link_to "Profile", current_user %> </li>
