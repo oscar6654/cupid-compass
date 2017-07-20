@@ -7,6 +7,7 @@ class LocationForm extends Component {
 
     this.state = {
       name: "",
+      description: "",
       address: "",
       city: "",
       state: "",
@@ -25,9 +26,10 @@ class LocationForm extends Component {
 
   handleFormSubmit(event) {
     event.preventDefault();
-    
+
     let formPayload = {
       name: this.state.name,
+      description: this.state.description,
       address: this.state.address,
       city: this.state.city,
       state: this.state.state,
@@ -45,6 +47,7 @@ class LocationForm extends Component {
     event.preventDefault();
     this.setState({
       name: "",
+      description: "",
       address: "",
       city: "",
       state: "",
@@ -72,7 +75,6 @@ class LocationForm extends Component {
     console.log("Hello from inside render")
     return(
       <div>
-      <h3> Hello from inside LocationForm</h3>
       <form className="form" onSubmit={this.handleFormSubmit}>
         {textFields}
         <input type="submit" name="Submit"/>
