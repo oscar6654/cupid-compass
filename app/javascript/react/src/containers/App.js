@@ -5,6 +5,7 @@ import { Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { BrowserRouter } from 'react-router-dom';
 import Location from './Location';
+import LocationForm from './LocationForm';
 
 const history = createBrowserHistory();
 
@@ -14,6 +15,7 @@ const App = props =>{
       <BrowserRouter history={history}>
         <Switch>
           <Route exact path='/locations' component={Location} />
+          <Route exact path="/locations/new" component={LocationForm} />
         </Switch>
       </BrowserRouter>
     </div>
