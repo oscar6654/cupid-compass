@@ -17,7 +17,6 @@ gem 'fog'
 group :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
-  gem 'dotenv-rails'
 end
 
 group :development do
@@ -35,6 +34,7 @@ group :development, :test do
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
   gem "faker", github: "stympy/faker"
+  gem 'dotenv-rails'
 end
 
 group :production do
