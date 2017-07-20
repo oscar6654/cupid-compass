@@ -8,6 +8,8 @@
 
 require "faker"
 
+User.create( first_name: "Admin", last_name: "Admin", email: "admin@admin.com", password: "admin123", admin: true )
+
 5.times do
   User.create(first_name: Faker::Zelda.character, last_name: Faker::Pokemon.name,email: Faker::Internet.free_email,password: Faker::Beer.name)
 end

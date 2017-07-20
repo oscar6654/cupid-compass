@@ -1,11 +1,29 @@
-<h3>Hello <%= @user.first_name.capitalize %>!</h3>
-<% if current_user %>
-  <% if current_user.profile_photo.file.nil? %>
-    <p>No Profile Photo </p>
-  <%else%>
-    <img src=<%= current_user.profile_photo %> height="160" width="160">
+<div class="row">
+<% if current_user && current_user.admin? %>
+    <ul><h5><b>Name:</b> <%= "#{@user.first_name} #{@user.last_name}" %></h5></ul>
+    <ul><h5><b>Email:</b> <%= @user.email %></h5</ul>
+      <% if @user.profile_photo.file.nil? %>
+        <ul><img src=<%= asset_path('avatar.jpg')%> height="100" width="100" ></ul>
+      <%else%>
+        <ul><img src=<%= @user.profile_photo %> height="100" width="100" ></ul>
+      <%end%>
+<%else%>
+  <h3>Hello <%= @user.first_name.capitalize %>!</h3>
+  <% if current_user %>
+    <% if @user.profile_photo.file.nil? %>
+      <p>No Profile Photo </p>
+    <%else%>
+      <img src=<%= @user.profile_photo %> height="160" width="160">
+    <%end%>
   <%end%>
 <%end%>
+</div>
 <div class="row">
-  <%= link_to "Edit Profile", edit_user_registration_path, class: "btn waves-effect waves-light" %>
+  <% if current_user && current_user.admin? %>
+    <%= link_to "Edit Profile", edit_user_path(@user), class: "btn waves-effect waves-light" %>
+    <%= link_to "Delete User", user_path(@user), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+
+  <%else%>
+    <%= link_to "Edit Profile", edit_user_registration_path, class: "btn waves-effect waves-light" %>
+  <%end%>
 </div>
