@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authorize_user, except: [:show]
 
   def index
-    @users = User.paginate(:page => params[:page], :per_page => 25)
+    @users = User.paginate(page: params[:page], per_page: 5)
   end
 
   def show
@@ -32,13 +32,16 @@ class UsersController < ApplicationController
   end
 
   protected
-    def authorize_user
-      if !current_user.admin?
-        raise ActionController::RoutingError.new("Not Found")
-      end
+
+  def authorize_user
+    if !current_user.admin?
+      raise ActionController::RoutingError.new("Not Found")
     end
+  end
+
   private
+
   def edit_user_params
-    params.require(:user).permit(:first_name,:last_name, :profile_photo)
+    params.require(:user).permit(:first_name, :last_name, :profile_photo)
   end
 end
