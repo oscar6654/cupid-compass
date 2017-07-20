@@ -12,12 +12,12 @@ gem 'materialize-sass'
 gem 'material_icons'
 gem 'carrierwave'
 gem 'fog'
-
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-materialize', github: 'harrybournis/will_paginate-materialize'
 
 group :test do
   gem 'coveralls', require: false
   gem 'database_cleaner'
-  gem 'dotenv-rails'
 end
 
 group :development do
@@ -34,6 +34,7 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'shoulda-matchers', require: false
   gem 'valid_attribute'
+  gem 'dotenv-rails'
   gem "faker", github: "stympy/faker"
 end
 

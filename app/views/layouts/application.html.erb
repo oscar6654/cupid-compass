@@ -12,10 +12,14 @@
   <header>
     <nav class="nav-extended">
       <div class="nav-wrapper teal lighten-1">
-        <li class="brand-logo"><%= link_to "Cupid's Compass", root_path %></li>
+        <li class="brand-logo">&nbsp;&nbsp;&nbsp;<%= link_to "Cupid's Compass", root_path %></li>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <% if current_user %>
+              <% if current_user.admin %>
+                  <li><%= link_to "All Users List", users_path %></li>
+              <%end%>
+            <li><%=link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
             <li><%=link_to "Sign In", new_user_session_path %></li>
@@ -24,6 +28,24 @@
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <% if current_user %>
+            <li>
+              <div class="user-view">
+                <div class="background">
+                  <img src="<%= asset_path('sky.jpg')%>">
+                </div>
+                  <% if current_user.profile_photo.file.nil? %>
+                    <span><%= link_to image_tag("avatar.jpg", :class => "circle"), current_user %></span>
+                  <%else%>
+                    <span><%= link_to image_tag(current_user.profile_photo, :class => "circle"), current_user %></span>
+                  <%end%>
+                  <span class="white-text name"><%=link_to current_user.first_name.capitalize, current_user %> </span>
+                  <span class="white-text email"><%=link_to current_user.email, current_user %> </span>
+              </div>
+            </li>
+              <% if current_user.admin %>
+                  <li><%= link_to "All Users List", users_path %></li>
+              <%end%>
+            <li><%= link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
             <li><%=link_to "Sign In", new_user_session_path %></li>
@@ -47,8 +69,8 @@
         Materialize.toast('<%= alert %>', 6000)
       </script>
     <% end %>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
+    <div class="container">
+      <%= yield %>
+    </div>
   </body>
 </html>

@@ -1,0 +1,44 @@
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s12">
+        <h4><b>Edit User <%=@user.first_name.capitalize%></b></h4>
+      </div>
+    </div>
+
+    <%= form_for @user do |f| %>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :first_name, type: "text", class: "validate", :required => true %>
+          <%= f.label :first_name, class: "active"%>
+        </div>
+
+        <div class="input-field col s6">
+          <%= f.text_field :last_name, type: "text", class: "validate", :required => true %>
+          <%= f.label :last_name ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="file-field input-field col s12">
+          <div class="btn">
+            <span>File</span>
+            <%= f.file_field :profile_photo, id: "upload"%>
+          </div>
+          <div class="file-path-wrapper">
+            <input class="file-path validate", placeholder="Change User Avatar">
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col s12">
+          <%= f.submit "Update User", class: "btn waves-effect waves-light" %>
+        </div>
+      </div>
+    <% end %>
+
+
+  </div>
+</div>

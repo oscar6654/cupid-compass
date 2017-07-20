@@ -26,7 +26,6 @@ feature "user signs in",
 
     click_button "Log in"
 
-    expect(page).to have_content "Signed in successfully"
     expect(page).to have_content "Sign out"
     expect(page).not_to have_content "Sign Up"
     expect(page).not_to have_content "Sign In"
@@ -46,7 +45,6 @@ feature "user signs in",
 
     click_button "Log in"
 
-    expect(page).to have_content "Invalid Email or password"
     expect(page).to have_content "Sign In"
     expect(page).to have_content "Sign Up"
   end
@@ -67,6 +65,6 @@ feature "user signs in",
 
     visit new_user_session_path
 
-    expect(page).to have_content "You are already signed in."
+    expect(page).to have_content "Sign out"
   end
 end
