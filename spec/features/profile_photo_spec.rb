@@ -11,6 +11,7 @@ feature "profile photo" do
     fill_in "Password confirmation", with: "boomstick!3vilisd3ad"
     attach_file "upload", "#{Rails.root}/spec/support/images/flower.jpg"
     click_button "Sign up"
+    first(:link, "Profile").click
     expect(page).to have_css("img[src*='flower.jpg']")
   end
 end

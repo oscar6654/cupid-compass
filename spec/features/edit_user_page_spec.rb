@@ -8,7 +8,7 @@ feature "user edits info",
 # Acceptance Criteria:
 #  [x] If I am logged in, I can visin edit account page
 #  [x] If I specify valid current password, I can make changes to my info
-#  [] If I don't specify valid current password, I can't make any changes to my info
+#  [x] If I don't specify valid current password, I can't make any changes to my info
 
 
   scenario "Visitor logs in and visit the edit page" do
@@ -23,7 +23,8 @@ feature "user edits info",
 
     click_button "Log in"
 
-    visit edit_user_registration_path
+    first(:link, "Profile").click
+    first(:link, "Edit Profile").click
 
     expect(page).to have_content "Edit My Info"
     expect(find_field('First name').value).to eq user_1.first_name
@@ -43,7 +44,8 @@ feature "user edits info",
 
     click_button "Log in"
 
-    visit edit_user_registration_path
+    first(:link, "Profile").click
+    first(:link, "Edit Profile").click
 
     fill_in "First name", with: "Howard"
     fill_in "Last name", with: "Stark"
@@ -55,7 +57,8 @@ feature "user edits info",
 
     click_button "Update"
 
-    visit edit_user_registration_path
+    first(:link, "Profile").click
+    first(:link, "Edit Profile").click
 
     expect(find_field('First name').value).to eq "Howard"
     expect(page).to have_css("img[src*='flower.jpg']")
@@ -65,7 +68,7 @@ feature "user edits info",
 
     click_button "Update"
 
-    visit edit_user_registration_path
+    first(:link, "Profile").click
 
     expect(page).to have_css("img[src*='flower2.jpg']")
   end
@@ -82,8 +85,9 @@ feature "user edits info",
 
     click_button "Log in"
 
-    visit edit_user_registration_path
-
+    first(:link, "Profile").click
+    first(:link, "Edit Profile").click
+    
     fill_in "First name", with: "Howard"
     fill_in "Last name", with: "Stark"
     fill_in "Email", with: "ash@s-mart.com"

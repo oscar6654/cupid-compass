@@ -16,6 +16,7 @@
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <% if current_user %>
+            <li><%=link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
             <li><%=link_to "Sign In", new_user_session_path %></li>
@@ -24,6 +25,15 @@
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <% if current_user %>
+            <li>
+              <div class="userView">
+                <div class="background">
+                  <img src="<%= asset_path('sky.jpg')%>">
+                </div>
+              <span class="white-text name"><%=link_to current_user.first_name.capitalize, current_user %> </span>
+              </div>
+            </li>
+            <li><%= link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
             <li><%=link_to "Sign In", new_user_session_path %></li>
