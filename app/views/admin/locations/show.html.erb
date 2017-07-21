@@ -10,5 +10,5 @@
 </div>
 <div class="row">
     <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light" %>
-    <%= link_to "Delete Location", locations_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+    <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
 </div>
