@@ -7,6 +7,5 @@ class Location < ActiveRecord::Base
   validates :zip, presence: true, numericality: { only_integer: true }, length: { is: 5 }
   validates :state, presence: true, length: { minimum: 2 }
 
-
   belongs_to :user
 end
