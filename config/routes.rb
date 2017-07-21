@@ -6,7 +6,6 @@ Rails.application.routes.draw do
 
   resources :locations, only: [:index, :new, :create], to: 'static_pages#index'
 
-
   namespace :api do
     namespace :v1 do
       resources :locations, only: [:index, :create] do
@@ -14,4 +13,8 @@ Rails.application.routes.draw do
       end
     end
   end
+  namespace :admin do
+    resources :locations
+  end
+
 end
