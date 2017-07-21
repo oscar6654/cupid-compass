@@ -15,3 +15,7 @@
  *= require_self
  */
 @import "materialize";
+
+.pagination a li.active{
+  color: #fff;
+}

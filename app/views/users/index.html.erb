@@ -1,0 +1,23 @@
+<h3>Hello Admin! </h3>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<table class="responsive-table">
+  <thead>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to "#{user.first_name} #{user.last_name}", user %></td>
+        <td><%= link_to user.email, user %></td>
+        <td><%= link_to "Edit User", edit_user_path(user), class: 'waves-effect waves-light btn' %></td>
+        <td><%= link_to "Delete User", user_path(user), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %></td>
+      </tr>
+      <% end %>
+  </tbody>
+</table>
+<%= will_paginate @users%>
