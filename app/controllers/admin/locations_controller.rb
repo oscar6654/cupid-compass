@@ -1,10 +1,7 @@
 class Admin::LocationsController < ApplicationController
   before_action :authorize_user
   def index
-    # @locations = Location.paginate(:page => params[:page], :per_page => 25)
     @locations = Location.all
-    # @creator = @locations.user
-
   end
 
   def show
