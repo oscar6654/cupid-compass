@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReviewForm from './ReviewForm';
+import Review from '../components/Review'
 
 class Location extends Component {
   constructor(props) {
@@ -9,6 +11,8 @@ class Location extends Component {
       locationInfo: {},
       random: ""
     }
+
+    this.createReview = this.createReview.bind(this)
   }
 
   componentDidMount() {
