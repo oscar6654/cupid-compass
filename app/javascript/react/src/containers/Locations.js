@@ -8,7 +8,8 @@ class Locations extends Component {
 
     this.state = {
       locations: [],
-      formShow: false
+      formShow: false,
+      showUser:false
     }
 
     this.handleFormShow = this.handleFormShow.bind(this)
@@ -23,10 +24,19 @@ class Locations extends Component {
     .then(body => {
       this.setState({ locations: body })
     })
+
+    fetch('/api/v1/users',{
+      credentials: "same-origin"
+    })
+    .then(response=>{
+      return response.json()
+    })
+    .then(body => {
+      this.setState({showUser:body.auth})
+    })
   }
 
   createLocation(payload) {
-    console.log(`payload: ${payload}`)
 
     fetch('/api/v1/locations', {
       method: 'POST',
@@ -59,20 +69,23 @@ class Locations extends Component {
     })
 
     let buttonText;
-    let form = ""
+    let form = "";
+    let button;
+
+    if (this.state.showUser) {
 
     if (this.state.formShow){
       form = <LocationForm createLocation={this.createLocation} />
-
-      buttonText = "Hide Form"
+      button = <button type="button" onClick={this.handleFormShow}>Hide Form</button>
     } else {
-      buttonText = "Add Location"
+      button = <button type="button" onClick={this.handleFormShow}>Add Location</button>
     }
+  }
 
     return(
 
       <div>
-        <button type="button" onClick={this.handleFormShow}>{buttonText}</button>
+        {button}
         {form}
         {locations}
       </div>
