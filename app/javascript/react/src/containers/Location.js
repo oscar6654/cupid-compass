@@ -1,13 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import ReviewForm from './ReviewForm';
+import Review from '../components/Review'
 
 class Location extends Component {
   constructor(props) {
     super(props)
 
     this.state = {
-      locationInfo: {}
+      locationInfo: {},
+      locationId: null,
+      reviews: []
     }
+
+    this.createReview = this.createReview.bind(this)
   }
 
   componentDidMount() {
@@ -18,7 +24,31 @@ class Location extends Component {
       let parsed = response.json()
       return parsed
     }).then(location => {
-      this.setState({ locationInfo: location })
+      this.setState({ locationInfo: location,locationId:locationId })
+    })
+
+    fetch(`/api/v1/locations/${locationId}/reviews`)
+    .then(response => {
+      return response.json()
+    })
+    .then(body => {
+      this.setState({ reviews: body })
+    })
+    }
+
+
+  createReview(payload) {
+    fetch(`/api/v1/locations/${this.state.locationId}/reviews`, {
+      method: 'POST',
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    }).then(response => {
+      let body = response.json()
+      return body;
+    }).then(body => {
+      let newReviews = this.state.reviews.slice()
+      newReviews.unshift(body)
+      this.setState({ reviews: newReviews })
     })
   }
 
@@ -34,6 +64,17 @@ class Location extends Component {
     } else {
       url = ""
     }
+
+    let reviews = this.state.reviews.map((review, index)=>{
+
+      return(
+        <Review
+          key = {index}
+          review={review}
+        />
+      )
+    })
+
     return(
       <div>
         <h4>{this.state.locationInfo.name}</h4>
@@ -45,6 +86,11 @@ class Location extends Component {
         </ul>
         <hr/>
         <br/>
+        <ReviewForm
+          createReview={this.createReview}
+        />
+
+        {reviews}
 
         <button><Link to='/locations'>Back to Locations Index</Link></button>
       </div>
