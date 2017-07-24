@@ -8,7 +8,8 @@ class Locations extends Component {
 
     this.state = {
       locations: [],
-      formShow: false
+      formShow: false,
+      showUser:false
     }
 
     this.handleFormShow = this.handleFormShow.bind(this)
@@ -17,18 +18,25 @@ class Locations extends Component {
 
   componentDidMount() {
     fetch('/api/v1/locations')
-    .then(response => {
-      return response.json()
-    })
+    .then(response => response.json())
     .then(body => {
       this.setState({ locations: body})
 
     })
+
+      fetch('/api/v1/users',{
+      credentials: "same-origin"
+    })
+    .then(response=>{
+      return response.json()
+    })
+    .then(body => {
+      this.setState({showUser:body.auth})
+    })
   }
 
-  createLocation(payload) {
-    console.log(`payload: ${payload}`)
 
+  createLocation(payload) {
     fetch('/api/v1/locations', {
       method: 'POST',
       credentials: "same-origin",
@@ -80,21 +88,25 @@ class Locations extends Component {
     })
 
     let buttonText;
-    let form = ""
+    let form = "";
+    let button;
 
-    if (this.state.formShow){
-      form = <LocationForm createLocation={this.createLocation} />
 
-      buttonText = "Hide Form"
-    } else {
-      buttonText = "Add Location"
+
+    if (this.state.showUser) {
+      if (this.state.formShow){
+        form = <LocationForm createLocation={this.createLocation} />
+        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Hide Form</button>
+      } else {
+        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Add Location</button>
+      }
     }
 
     return(
 
       <div>
         <div className="padding-button row">
-        <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>{buttonText}</button>
+        {button}
         </div>
         {form}
         <div className="row">

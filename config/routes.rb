@@ -13,6 +13,7 @@ Rails.application.routes.draw do
       resources :locations, only: [:index, :create, :show] do
         resources :reviews, only: [:index,:create]
       end
+      resources :users, only: [:index]
     end
   end
   namespace :admin do
