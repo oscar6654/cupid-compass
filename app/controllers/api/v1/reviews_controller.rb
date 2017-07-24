@@ -3,13 +3,17 @@ class Api::V1::ReviewsController < ApplicationController
 
   def create
     data = JSON.parse(request.body.read)
-    new_review = Review.create(
-      body: data["body"],
-      rating: data["rating"],
-      location_id: params[:location_id],
-      user_id: current_user.id,
-      vote_count:0)
-    render json: new_review
+    if current_user
+      new_review = Review.create(
+        body: data["body"],
+        rating: data["rating"],
+        location_id: params[:location_id],
+        user_id: current_user.id,
+        vote_count:0)
+      render json: new_review
+    else
+      
+    end
   end
 
   def index

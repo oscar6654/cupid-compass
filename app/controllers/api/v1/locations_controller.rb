@@ -14,6 +14,8 @@ class Api::V1::LocationsController < ApplicationController
         url: data["url"],
         user_id: current_user.id)
       render json: new_location
+    else
+      
     end
   end
 

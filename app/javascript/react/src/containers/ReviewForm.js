@@ -9,8 +9,7 @@ class ReviewForm extends Component {
 
     this.state = {
       body: "",
-      rating: "4"
-
+      rating: ""
     }
 
     this.handleChange = this.handleChange.bind(this);

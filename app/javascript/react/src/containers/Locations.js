@@ -24,12 +24,10 @@ class Locations extends Component {
 
     })
 
-      fetch('/api/v1/users',{
+    fetch('/api/v1/users',{
       credentials: "same-origin"
     })
-    .then(response=>{
-      return response.json()
-    })
+    .then(response => response.json())
     .then(body => {
       this.setState({showUser:body.auth})
     })
@@ -61,7 +59,6 @@ class Locations extends Component {
 
     let locations = this.state.locations.map( (location, index) => {
       let descriptionString = ""
-        // debugger;
         if (location.description.length > 30) {
           descriptionString = `${location.description.substring(0, 30)}...`
         } else {
