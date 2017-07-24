@@ -4,8 +4,9 @@ import NavBar from '../components/NavBar';
 import { Route, Switch } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { BrowserRouter } from 'react-router-dom';
-import Location from './Location';
+import Locations from './Locations';
 import LocationForm from './LocationForm';
+import Location from './Location';
 
 const history = createBrowserHistory();
 
@@ -14,8 +15,9 @@ const App = props =>{
     <div>
       <BrowserRouter history={history}>
         <Switch>
-          <Route exact path='/locations' component={Location} />
-          <Route exact path="/locations/new" component={LocationForm} />
+          <Route exact path='/locations' component={Locations} />
+          <Route exact path='/locations/new' component={LocationForm} />
+          <Route exact path='/locations/:id' component={Location} />
         </Switch>
       </BrowserRouter>
     </div>

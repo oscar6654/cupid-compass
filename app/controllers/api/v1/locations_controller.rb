@@ -18,4 +18,9 @@ class Api::V1::LocationsController < ApplicationController
   def index
     render json: Location.all.order(created_at: :desc)
   end
+
+  def show
+    selected_location_id = params[:id].to_i
+    render json: Location.find(selected_location_id)
+  end
 end
