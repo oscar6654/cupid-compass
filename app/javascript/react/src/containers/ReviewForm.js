@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import TextField from '../components/TextField'
+import TextArea from '../components/TextArea'
 import SelectField from '../components/SelectField'
 
 
@@ -45,10 +45,11 @@ class ReviewForm extends Component {
   render() {
 
     return(
-
+      <div>
       <form className="form" onSubmit={this.handleFormSubmit}>
-      <TextField
+      <TextArea
         name="body"
+        label="Review"
         handleChange={this.handleChange}
         content={this.state.body}
       />
@@ -58,8 +59,10 @@ class ReviewForm extends Component {
       handleChange={this.handleChange}
       />
 
-      <input type="submit" name="Submit"/>
+      <input type="submit" name="Submit" className="btn waves-effect waves-light" />
       </form>
+      <br />
+      </div>
     )
   }
 }

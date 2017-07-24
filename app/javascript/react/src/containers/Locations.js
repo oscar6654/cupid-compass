@@ -33,8 +33,9 @@ class Locations extends Component {
       method: 'POST',
       credentials: "same-origin",
       body: JSON.stringify(payload)
-    }).then(response => response.json())
-    }).then(body => {
+    })
+    .then(response => response.json())
+    .then(body => {
       this.setState({formShow:false})
       let newLocations = this.state.locations.slice()
       newLocations.unshift(body)
@@ -82,7 +83,6 @@ class Locations extends Component {
     let form = ""
 
     if (this.state.formShow){
-      debugger;
       form = <LocationForm createLocation={this.createLocation} />
 
       buttonText = "Hide Form"
