@@ -10,7 +10,7 @@ const TextField = props => {
         className = "materialize-textarea"
         value={props.content}
       />
-      <label className="capitalize">{props.name}</label>
+      <label className="capitalize">{props.label}</label>
     </div>
   );
 }

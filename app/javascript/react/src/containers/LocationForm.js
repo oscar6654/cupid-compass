@@ -70,6 +70,7 @@ class LocationForm extends Component {
           <TextArea
             key={index}
             name={fieldCategory}
+            label={fieldCategory}
             handleChange={this.handleChange}
             content={this.state[fieldCategory]}
           />
