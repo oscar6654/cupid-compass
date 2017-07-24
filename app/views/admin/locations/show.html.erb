@@ -1,0 +1,14 @@
+<div class="row">
+  <ul><h5><b>Location name:</b> <%= @location.name %></h5></ul>
+  <ul><h5><b>Description:</b> <%= @location.description %></h5></ul>
+  <ul><h5><b>Address:</b> <%= @location.address %></h5></ul>
+  <ul><h5><b>City:</b> <%= @location.city %></h5></ul>
+  <ul><h5><b>State:</b> <%= @location.state %></h5></ul>
+  <ul><h5><b>Zip:</b> <%= @location.zip %></h5></ul>
+  <ul><h5><b>Url:</b> <a href=<%= @location.url %> ></a></h5></ul>
+
+</div>
+<div class="row">
+    <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light" %>
+    <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+</div>

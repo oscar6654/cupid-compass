@@ -12,8 +12,11 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery.dataTables
+//= require dataTables.responsive
 //= require materialize
 //= require_tree .
+//= require yadcf
 
 $(document).ready(function() {
   Materialize.updateTextFields();

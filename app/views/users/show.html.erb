@@ -3,17 +3,17 @@
     <ul><h5><b>Name:</b> <%= "#{@user.first_name} #{@user.last_name}" %></h5></ul>
     <ul><h5><b>Email:</b> <%= @user.email %></h5</ul>
       <% if @user.profile_photo.file.nil? %>
-        <ul><img src=<%= asset_path('avatar.jpg')%> height="100" width="100" ></ul>
+        <ul><img src=<%= asset_path('avatar.jpg')%> height="100" width="100", class= "circle" ></ul>
       <%else%>
-        <ul><img src=<%= @user.profile_photo %> height="100" width="100" ></ul>
+        <ul><img src=<%= @user.profile_photo %> height="100" width="100", class= "circle" ></ul>
       <%end%>
 <%else%>
   <h3>Hello <%= @user.first_name.capitalize %>!</h3>
   <% if current_user %>
     <% if @user.profile_photo.file.nil? %>
-      <p>No Profile Photo </p>
+      <ul><img src=<%= asset_path('avatar.jpg')%> height="100" width="100", class= "circle" ></ul>
     <%else%>
-      <img src=<%= @user.profile_photo %> height="160" width="160">
+      <ul><img src=<%= @user.profile_photo%> height="160" width="160", class= "circle"></ul>
     <%end%>
   <%end%>
 <%end%>

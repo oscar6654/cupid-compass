@@ -1,6 +1,27 @@
+<script>
+$(document).ready(function() {
+      $('#users').dataTable({
+        dom: 'frtip',
+        pageLength: 10,
+        responsive: true,
+        destroy: true
+          }).yadcf([
+            {column_number : 0, filter_type: "text", filter_container_id: "external_filter_container2", filter_default_label: "Name"}
+      ]);
+
+} );
+
+</script>
 <h3>Hello Admin! </h3>
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-<table class="responsive-table">
+
+<ul class="collapsible" data-collapsible="accordion">
+  <li>
+    <div class="collapsible-header"><i class="material-icons">filter_list</i>Filter</div>
+    <div class="collapsible-body"><div id="external_filter_container2"></div></div>
+    <!--<div class="collapsible-body">TEST</div>-->
+  </li>
+</ul>
+<table id = "users" class="display nowrap" cellspacing="0" width="100%">
   <thead>
     <tr>
         <th>Name</th>
@@ -20,4 +41,3 @@
       <% end %>
   </tbody>
 </table>
-<%= will_paginate @users%>

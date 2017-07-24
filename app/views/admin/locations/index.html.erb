@@ -1,0 +1,45 @@
+<script>
+$(document).ready(function() {
+      $('#locations').dataTable({
+        dom: 'frtip',
+        pageLength: 10,
+        responsive: true,
+        destroy: true
+          }).yadcf([
+            {column_number : 0, filter_type: "text", filter_container_id: "external_filter_container2", filter_default_label: "Location Name"}
+      ]);
+} );
+
+</script>
+  <h3>All Location</h3>
+
+<script>
+
+</script>
+  <ul class="collapsible" data-collapsible="accordion">
+    <li>
+      <div class="collapsible-header"><i class="material-icons">filter_list</i>Filter</div>
+      <div class="collapsible-body"><div id="external_filter_container2"></div></div>
+    </li>
+  </ul>
+  <table id = "locations" class="display nowrap" cellspacing="0" width="100%">
+    <thead>
+      <tr>
+          <th>Location Name</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Created By</th>
+
+      </tr>
+    </thead>
+    <tbody>
+        <% @locations.each do |location| %>
+        <tr>
+          <td><%= link_to location.name, admin_location_path(location) %></td>
+          <td><%= link_to location.city, admin_location_path(location) %></td>
+          <td><%= link_to location.state, admin_location_path(location) %></td>
+          <td><%= link_to User.find(location.user_id).first_name , admin_location_path(location) %></td>
+        </tr>
+        <% end %>
+    </tbody>
+  </table>

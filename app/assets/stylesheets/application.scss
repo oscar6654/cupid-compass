@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require material_icons
+ *= require jquery.dataTables
+ *= require responsive.bootstrap
  *= require_tree .
  *= require_self
  */
@@ -19,3 +21,12 @@
 .pagination a li.active{
   color: #fff;
 }
+.capitalize {
+  text-transform: capitalize;
+}
+.padding-button {
+  padding: 15px;
+}
+// .waves-effect:hover{
+//   background: blue;
+// }

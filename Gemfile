@@ -13,7 +13,7 @@ gem 'material_icons'
 gem 'carrierwave'
 gem 'fog'
 gem 'will_paginate', '~> 3.1.0'
-gem 'will_paginate-materialize', github: 'harrybournis/will_paginate-materialize'
+gem 'rails-assets-yadcf', source: 'https://rails-assets.org'
 
 group :test do
   gem 'coveralls', require: false
