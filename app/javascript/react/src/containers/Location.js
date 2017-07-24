@@ -15,9 +15,7 @@ class Location extends Component {
     let idRegex = /[0-9]+\/{0,1}$/
     let locationId = this.props.location.pathname.match(idRegex)[0]
     fetch(`/api/v1/locations/${locationId}`)
-    .then(response => {
-      let parsed = response.json()
-      return parsed
+    .then(response => response.json())
     }).then(location => {
       this.setState({ locationInfo: location, random:  `https://lorempixel.com/350/350/city/${Math.floor(Math.random() * 10) + 1}`})
       this.setState({})

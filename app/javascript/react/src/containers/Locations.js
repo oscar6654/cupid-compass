@@ -33,9 +33,7 @@ class Locations extends Component {
       method: 'POST',
       credentials: "same-origin",
       body: JSON.stringify(payload)
-    }).then(response => {
-      let body = response.json()
-      return body;
+    }).then(response => response.json())
     }).then(body => {
       this.setState({formShow:false})
       let newLocations = this.state.locations.slice()
