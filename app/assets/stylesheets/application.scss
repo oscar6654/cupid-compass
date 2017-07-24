@@ -11,6 +11,8 @@
  * It is generally better to create a new file per style scope.
  *
  *= require material_icons
+ *= require jquery.dataTables
+ *= require responsive.bootstrap
  *= require_tree .
  *= require_self
  */

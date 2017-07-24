@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import LocationForm from './LocationForm';
 import { Link } from 'react-router-dom';
 
 class Location extends Component {
@@ -7,74 +6,47 @@ class Location extends Component {
     super(props)
 
     this.state = {
-      locations: [],
-      formShow: false
+      locationInfo: {}
     }
-
-    this.handleFormShow = this.handleFormShow.bind(this)
-    this.createLocation = this.createLocation.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/v1/locations')
+    let idRegex = /[0-9]+\/{0,1}$/
+    let locationId = this.props.location.pathname.match(idRegex)[0]
+    fetch(`/api/v1/locations/${locationId}`)
     .then(response => {
-      return response.json()
+      let parsed = response.json()
+      return parsed
+    }).then(location => {
+      this.setState({ locationInfo: location })
     })
-    .then(body => {
-      this.setState({ locations: body })
-    })
-  }
-
-  createLocation(payload) {
-    console.log(`payload: ${payload}`)
-
-    fetch('/api/v1/locations', {
-      method: 'POST',
-      credentials: "same-origin",
-      body: JSON.stringify(payload)
-    }).then(response => {
-      let body = response.json()
-      return body;
-    }).then(body => {
-      this.setState({formShow:false})
-      let newLocations = this.state.locations.slice()
-      newLocations.unshift(body)
-      this.setState({ locations: newLocations })
-    })
-  }
-
-  handleFormShow(event) {
-    event.preventDefault()
-    this.setState({formShow: !this.state.formShow})
   }
 
   render() {
-    let locations = this.state.locations.map( (location, index) => {
-      return(
-
-        <ul key={index}>
-        <Link to={`/locations/${location.id}`}>{location.name}</Link>
-        </ul>
-      )
-    })
-
-    let buttonText;
-    let form = ""
-
-    if (this.state.formShow){
-      form = <LocationForm createLocation={this.createLocation} />
-
-      buttonText = "Hide Form"
+    let url
+    let urlRegex = /^https{0,1}:\/\//
+    if(this.state.locationInfo.url) {
+      if(this.state.locationInfo.url.match(urlRegex) ) {
+        url = this.state.locationInfo.url
+      } else {
+        url = `http://${this.state.locationInfo.url}`
+      }
     } else {
-      buttonText = "Add Location"
+      url = ""
     }
-
     return(
-
       <div>
-        {form}
-        <button type="button" onClick={this.handleFormShow}>{buttonText}</button>
-        {locations}
+        <h4>{this.state.locationInfo.name}</h4>
+        <p>{this.state.locationInfo.description}</p>
+        <a href={url}>{url}</a>
+        <ul>
+          <li>{this.state.locationInfo.address}</li>
+          <li>{this.state.locationInfo.city}, {this.state.locationInfo.state} {this.state.locationInfo.zip}</li>
+        </ul>
+        <hr/>
+        <br/>
+
+        <button><Link to='/locations'>Back to Locations Index</Link></button>
       </div>
     )
   }

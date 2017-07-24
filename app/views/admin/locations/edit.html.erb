@@ -1,0 +1,63 @@
+<div class="row">
+  <div class="col s12">
+    <div class="row">
+      <div class="col s12">
+        <h4><b>Edit Location <%=@location_edit.name.capitalize%></b></h4>
+      </div>
+    </div>
+
+    <%= form_for(@location_edit, :url => {:action => :update}) do |f| %>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :name, type: "text", class: "validate", :required => true %>
+          <%= f.label :name, class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :description, type: "text", class: "validate", :required => true %>
+          <%= f.label :description ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :address, type: "text", class: "validate", :required => true %>
+          <%= f.label :address ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :city, type: "text", class: "validate", :required => true %>
+          <%= f.label :city ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :zip, type: "text", class: "validate", :required => true %>
+          <%= f.label :zip ,class: "active"%>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="input-field col s6">
+          <%= f.text_field :url, type: "text", class: "validate" %>
+          <%= f.label :url ,class: "active"%>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col s12">
+          <%= f.submit "Update Location", class: "btn waves-effect waves-light" %>
+        </div>
+      </div>
+  <% end %>
+
+
+  </div>
+</div>
