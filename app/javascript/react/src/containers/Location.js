@@ -5,6 +5,7 @@ class Location extends Component {
   constructor(props) {
     super(props)
 
+
     this.state = {
       locationInfo: {}
     }
@@ -45,8 +46,8 @@ class Location extends Component {
         </ul>
         <hr/>
         <br/>
-
         <button><Link to='/locations'>Back to Locations Index</Link></button>
+
       </div>
     )
   }
