@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import TextField from '../components/TextField'
+import TextArea from '../components/TextArea'
 
 class LocationForm extends Component {
   constructor(props) {
@@ -62,6 +63,19 @@ class LocationForm extends Component {
     } ); //array of field categories
 
     let textFields = fieldCategories.map( (fieldCategory, index) => {
+      let descriptionField;
+      let input;
+      if (fieldCategory == "description") {
+        return(
+          <TextArea
+            key={index}
+            name={fieldCategory}
+            handleChange={this.handleChange}
+            content={this.state[fieldCategory]}
+          />
+        )
+      }
+    else{
       return(
         <TextField
           key={index}
@@ -70,13 +84,14 @@ class LocationForm extends Component {
           content={this.state[fieldCategory]}
         />
       )
+    }
     })
 
     return(
       <div>
       <form className="form" onSubmit={this.handleFormSubmit}>
         {textFields}
-        <input type="submit" name="Submit"/>
+        <input type="submit" className="btn waves-effect waves-light" name="Submit"/>
       </form>
       </div>
     )

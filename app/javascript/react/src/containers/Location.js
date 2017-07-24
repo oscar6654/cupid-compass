@@ -6,7 +6,8 @@ class Location extends Component {
     super(props)
 
     this.state = {
-      locationInfo: {}
+      locationInfo: {},
+      random: ""
     }
   }
 
@@ -18,7 +19,8 @@ class Location extends Component {
       let parsed = response.json()
       return parsed
     }).then(location => {
-      this.setState({ locationInfo: location })
+      this.setState({ locationInfo: location, random:  `https://lorempixel.com/350/350/city/${Math.floor(Math.random() * 10) + 1}`})
+      this.setState({})
     })
   }
 
@@ -34,19 +36,28 @@ class Location extends Component {
     } else {
       url = ""
     }
+
     return(
       <div>
-        <h4>{this.state.locationInfo.name}</h4>
-        <p>{this.state.locationInfo.description}</p>
-        <a href={url}>{url}</a>
-        <ul>
-          <li>{this.state.locationInfo.address}</li>
-          <li>{this.state.locationInfo.city}, {this.state.locationInfo.state} {this.state.locationInfo.zip}</li>
-        </ul>
-        <hr/>
-        <br/>
+          <div className="col s12">
+            <div className="card horizontal">
+            <div className="card-image">
+              <img src={this.state.random} />
+            </div>
+              <div className="card-content black-text">
+                <span className="card-title">{this.state.locationInfo.name}</span>
+                <p>{this.state.locationInfo.description}</p>
+                <ul>
+                  <li>{this.state.locationInfo.address}</li>
+                  <li>{this.state.locationInfo.city}, {this.state.locationInfo.state} {this.state.locationInfo.zip}</li>
+                </ul>
+              </div>
+            </div>
+        </div>
 
-        <button><Link to='/locations'>Back to Locations Index</Link></button>
+
+
+        <Link to='/locations' className="btn waves-effect waves-light">Back to Locations Index</Link>
       </div>
     )
   }
