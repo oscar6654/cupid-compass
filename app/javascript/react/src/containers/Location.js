@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReviewForm from './ReviewForm';
-import Review from '../components/Review'
+import Review from './Review'
 
 class Location extends Component {
   constructor(props) {
@@ -69,8 +69,9 @@ class Location extends Component {
 
       return(
         <Review
-        key = {index}
-        review={review}
+          key = {index}
+          review={review}
+          locationId={this.state.locationId}
         />
       )
     })

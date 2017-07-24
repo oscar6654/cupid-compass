@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import Locations from './Locations';
 import LocationForm from './LocationForm';
 import Location from './Location';
-import Review from '../components/Review';
+import Review from './Review';
 import ReviewForm from './ReviewForm'
 
 const history = createBrowserHistory();
