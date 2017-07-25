@@ -9,15 +9,17 @@ class Api::V1::ReviewsController < ApplicationController
         rating: data["rating"],
         location_id: params[:location_id],
         user_id: current_user.id,
-        vote_count:0)
+        vote_count: 0
+        )
       render json: new_review
     else
-      
+      error = { message: 'You must be logged in to create a review' }
+      render json: error
     end
   end
 
   def index
-    reviews = Review.where(location_id:params[:location_id]).order(created_at: :desc)
+    reviews = Review.where(location_id: params[:location_id]).order(created_at: :desc)
     render json: reviews
   end
 
