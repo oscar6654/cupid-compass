@@ -14,6 +14,7 @@ gem 'carrierwave'
 gem 'fog'
 gem 'will_paginate', '~> 3.1.0'
 gem 'rails-assets-yadcf', source: 'https://rails-assets.org'
+gem 'mailcatcher' 
 
 group :test do
   gem 'coveralls', require: false
