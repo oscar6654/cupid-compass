@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe Api::V1::ReviewsController, type: :controller do
 
+RSpec.describe Api::V1::ReviewsController, type: :controller do
   let!(:user_1) {User.create(
         first_name: "Tiger",
         last_name: "Woods",
@@ -69,6 +69,7 @@ RSpec.describe Api::V1::ReviewsController, type: :controller do
         expect(returned_json['vote_count']).to eq review_1.vote_count
         expect(returned_json['location_id']).to eq review_1.location_id
         expect(returned_json['user_id']).to eq review_1.user_id
+        expect(ActionMailer::Base.deliveries.count).to eq(2)
       end
 
       it "should not create a review when the user is not signed in" do
