@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import LocationForm from './LocationForm';
 import { Link } from 'react-router-dom';
+import LocationIndexTile from '../components/LocationIndexTile'
 
 class Locations extends Component {
   constructor(props) {
@@ -59,28 +60,22 @@ class Locations extends Component {
 
     let locations = this.state.locations.map( (location, index) => {
       let descriptionString = ""
-        if (location.description.length > 30) {
-          descriptionString = `${location.description.substring(0, 30)}...`
-        } else {
-          descriptionString = location.description
-        }
-        let random = Math.floor(Math.random() * 10) + 1
+      if (location.description.length > 30) {
+        descriptionString = `${location.description.substring(0, 30)}...`
+      } else {
+        descriptionString = location.description
+      }
+      let random = Math.floor(Math.random() * 10) + 1
+      let imgUrl = `https://lorempixel.com/100/190/city/${random}`
+
       return(
-        <div key={index}>
-          <div className="col s12 m6">
-            <div className="card horizontal">
-              <div className="card-image">
-                <img src={`https://lorempixel.com/100/190/city/${random}`} />
-              </div>
-              <div className="card-content black-text">
-                <span className="card-title"><Link to={`/locations/${location.id}`}>{location.name}</Link></span>
-                <p>{descriptionString}</p>
-                <br />
-                <p><b>{location.city}, {location.state}</b></p>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LocationIndexTile
+          key={index}
+          id={location.id}
+          location={location}
+          imgUrl={imgUrl}
+          descriptionString={descriptionString}
+        />
       )
     })
 

@@ -11,12 +11,13 @@ Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
       resources :locations, only: [:index, :create, :show] do
-        resources :reviews, only: [:index,:create,:show,:update,:edit]
+        resources :reviews, only: [:index, :create, :show, :update, :edit]
       end
       resources :users, only: [:index]
     end
   end
   namespace :admin do
+    resources :reviews, only: [:edit, :update, :destroy]
     resources :locations
   end
 end

@@ -11,6 +11,10 @@ class Api::V1::ReviewsController < ApplicationController
         user_id: current_user.id,
         vote_count: 0
         )
+      @location = Location.find(params[:location_id])
+      @creator = Location.find(params[:location_id]).user
+
+      ReviewMailer.new_review(data, current_user, @location, @creator).deliver
       render json: new_review
     else
       error = { message: 'You must be logged in to create a review' }

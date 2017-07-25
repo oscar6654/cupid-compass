@@ -10,4 +10,5 @@ class Location < ActiveRecord::Base
             message: "Must be a valid URL"}
 
   belongs_to :user
+  has_many :reviews
 end
