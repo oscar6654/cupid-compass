@@ -15,7 +15,8 @@ class Api::V1::LocationsController < ApplicationController
         user_id: current_user.id)
       render json: new_location
     else
-      
+      error = { message: 'You must be logged in to create a new location' }
+      render json: error
     end
   end
 
