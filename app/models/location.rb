@@ -8,4 +8,5 @@ class Location < ActiveRecord::Base
   validates :state, presence: true, length: { minimum: 2 }
 
   belongs_to :user
+  has_many :reviews
 end
