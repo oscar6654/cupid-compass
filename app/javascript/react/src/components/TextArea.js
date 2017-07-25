@@ -3,13 +3,14 @@ import React from 'react';
 const TextField = props => {
   return (
     <div className = "input-field">
-      <input
+      <textarea
         name={props.name}
         onChange={props.handleChange}
         type='text'
+        className = "materialize-textarea"
         value={props.content}
       />
-      <label className="capitalize">{props.name}</label>
+      <label className="capitalize">{props.label}</label>
     </div>
   );
 }

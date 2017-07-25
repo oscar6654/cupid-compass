@@ -8,7 +8,8 @@ class Locations extends Component {
 
     this.state = {
       locations: [],
-      formShow: false
+      formShow: false,
+      showUser:false
     }
 
     this.handleFormShow = this.handleFormShow.bind(this)
@@ -17,29 +18,34 @@ class Locations extends Component {
 
   componentDidMount() {
     fetch('/api/v1/locations')
-    .then(response => {
-      return response.json()
-    })
+    .then(response => response.json())
     .then(body => {
-      this.setState({ locations: body })
+      this.setState({ locations: body})
+
+    })
+
+    fetch('/api/v1/users',{
+      credentials: "same-origin"
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({showUser:body.auth})
     })
   }
 
-  createLocation(payload) {
-    console.log(`payload: ${payload}`)
 
+  createLocation(payload) {
     fetch('/api/v1/locations', {
       method: 'POST',
       credentials: "same-origin",
       body: JSON.stringify(payload)
-    }).then(response => {
-      let body = response.json()
-      return body;
-    }).then(body => {
+    })
+    .then(response => response.json())
+    .then(body => {
       this.setState({formShow:false})
       let newLocations = this.state.locations.slice()
       newLocations.unshift(body)
-      this.setState({ locations: newLocations })
+      this.setState({ locations: newLocations, random: `${Math.floor(Math.random() * 10) + 1}` })
     })
   }
 
@@ -49,32 +55,60 @@ class Locations extends Component {
   }
 
   render() {
-    let locations = this.state.locations.map( (location, index) => {
-      return(
 
-        <ul key={index}>
-          <Link to={`/locations/${location.id}`}>{location.name}</Link>
-        </ul>
+
+    let locations = this.state.locations.map( (location, index) => {
+      let descriptionString = ""
+        if (location.description.length > 30) {
+          descriptionString = `${location.description.substring(0, 30)}...`
+        } else {
+          descriptionString = location.description
+        }
+        let random = Math.floor(Math.random() * 10) + 1
+      return(
+        <div key={index}>
+          <div className="col s12 m6">
+            <div className="card horizontal">
+              <div className="card-image">
+                <img src={`https://lorempixel.com/100/190/city/${random}`} />
+              </div>
+              <div className="card-content black-text">
+                <span className="card-title"><Link to={`/locations/${location.id}`}>{location.name}</Link></span>
+                <p>{descriptionString}</p>
+                <br />
+                <p><b>{location.city}, {location.state}</b></p>
+              </div>
+            </div>
+          </div>
+        </div>
       )
     })
 
     let buttonText;
-    let form = ""
+    let form = "";
+    let button;
 
-    if (this.state.formShow){
-      form = <LocationForm createLocation={this.createLocation} />
 
-      buttonText = "Hide Form"
-    } else {
-      buttonText = "Add Location"
+
+    if (this.state.showUser) {
+      if (this.state.formShow){
+        form = <LocationForm createLocation={this.createLocation} />
+        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Hide Form</button>
+      } else {
+        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Add Location</button>
+      }
     }
 
     return(
 
       <div>
-        <button type="button" onClick={this.handleFormShow}>{buttonText}</button>
+        <div className="padding-button row">
+        {button}
+        </div>
         {form}
+        <div className="row">
         {locations}
+        </div>
       </div>
     )
   }
