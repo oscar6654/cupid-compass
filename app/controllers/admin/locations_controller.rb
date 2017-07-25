@@ -10,7 +10,6 @@ class Admin::LocationsController < ApplicationController
 
   def edit
     @location_edit = Location.find(params[:id])
-    # binding.pry
   end
 
   def update
