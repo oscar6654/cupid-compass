@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import ReviewForm from './ReviewForm';
 import Review from './Review'
+import LocationTile from '../components/LocationTile'
 
 class Location extends Component {
   constructor(props) {
@@ -35,7 +36,7 @@ class Location extends Component {
 
   handleFormShow(event) {
     event.preventDefault()
-    this.setState({formShow: !this.state.formShow})
+    this.setState({ formShow: !this.state.formShow })
   }
 
   createReview(payload) {
@@ -80,7 +81,10 @@ class Location extends Component {
     let form = ""
 
     if (this.state.formShow){
-      form = <ReviewForm createReview={this.createReview} />
+      form = <ReviewForm
+              createReview={this.createReview}
+              handleFormShow={this.handleFormShow}
+             />
 
       buttonText = "Hide Review Form"
     } else {
@@ -89,26 +93,12 @@ class Location extends Component {
 
     return(
       <div>
-        <div className="col s12">
-          <div className="card horizontal">
-            <div className="card-image">
-              <img src={this.state.random} />
-            </div>
-            <div className="card-stacked">
-              <div className="card-content">
-                <span className="card-title">{this.state.locationInfo.name}</span>
-                <p>{this.state.locationInfo.description}</p>
-                <ul>
-                  <li>{this.state.locationInfo.address}</li>
-                  <li>{this.state.locationInfo.city}, {this.state.locationInfo.state} {this.state.locationInfo.zip}</li>
-                </ul>
-              </div>
-              <div className="card-action">
-                <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>{buttonText}</button>
-              </div>
-            </div>
-          </div>
-        </div>
+        <LocationTile
+          locationInfo={this.state.locationInfo}
+          random={this.state.random}
+          handleFormShow={this.handleFormShow}
+          buttonText={buttonText}
+        />
         {form}
         {reviews}
         <Link to='/locations' className="btn waves-effect waves-light">Back to Locations Index</Link>
