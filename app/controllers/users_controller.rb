@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   before_action :authorize_user, except: [:show]
 
   def index
-    @users = User.paginate(page: params[:page], per_page: 5)
+    @users = User.paginate(page: params[:page], per_page: 15)
   end
 
   def show

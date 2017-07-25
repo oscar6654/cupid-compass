@@ -1,3 +1,3 @@
 class ApplicationMailer < ActionMailer::Base
-  default from: 'noreply@cupid-compass.com'
+  default from: 'cupid-compass@cupid-compass.herokuapp.com'
 end

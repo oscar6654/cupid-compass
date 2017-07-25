@@ -1,14 +1,36 @@
 <div class="row">
-  <ul><h5><b>Location name:</b> <%= @location.name %></h5></ul>
-  <ul><h5><b>Description:</b> <%= @location.description %></h5></ul>
-  <ul><h5><b>Address:</b> <%= @location.address %></h5></ul>
-  <ul><h5><b>City:</b> <%= @location.city %></h5></ul>
-  <ul><h5><b>State:</b> <%= @location.state %></h5></ul>
-  <ul><h5><b>Zip:</b> <%= @location.zip %></h5></ul>
-  <ul><h5><b>Url:</b> <a href=<%= @location.url %> ></a></h5></ul>
-
+  <div class="col s12">
+    <div class="card">
+      <div class="card-content black-text">
+        <span class="card-title"><h4><%= @location.name %></h4></span>
+        <ul><b>Description:</b> <%= @location.description %></ul>
+        <ul><b>Address:</b> <%= @location.address %></ul>
+        <ul><b>City:</b> <%= @location.city %></ul>
+        <ul><b>State:</b> <%= @location.state %></ul>
+        <ul><b>Zip:</b> <%= @location.zip %></ul>
+        <ul><b>Url:</b> <a href=<%= @location.url %> ></a> </ul>
+      </div>
+      <div class="card-action">
+        <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light" %>
+        <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+      </div>
+    </div>
+  </div>
 </div>
-<div class="row">
-    <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light" %>
-    <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
-</div>
+<% @reviews.each do |review| %>
+  <div class="row">
+    <div class="col s12">
+      <div class="card">
+        <div class="card-content black-text">
+          <span class="card-title"> <%= link_to review.user.first_name, review.user %> </span>
+          <span class="black-text">Rating: <%= review.rating %><br/>
+            <%= review.body %></span>
+        </div>
+        <div class="card-action">
+          <%= link_to "Edit Review", edit_admin_review_path(review), class: "btn waves-effect waves-light" %>
+          <%= link_to "Delete Review", admin_review_path(review), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+        </div>
+      </div>
+    </div>
+  </div>
+<% end %>

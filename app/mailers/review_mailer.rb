@@ -1,5 +1,5 @@
 class ReviewMailer < ApplicationMailer
-  def new_review (review_data, user_data, location, creator)
+  def new_review(review_data, user_data, location, creator)
     @review = review_data
     @location = location
     @user_data = user_data
