@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 
 const LocationIndexTile = props => {
 
@@ -11,7 +11,7 @@ const LocationIndexTile = props => {
             <img src={props.imgUrl} />
           </div>
           <div className="card-content black-text">
-            <span className="card-title"><Link to={`/locations/${props.location.id}`}>{props.location.name}</Link></span>
+            <span className="card-title"><a href={`/locations/${props.location.id}`}>{props.location.name}</a></span>
             <p>{props.descriptionString}</p>
             <br />
             <p><b>{props.location.city}, {props.location.state}</b></p>
