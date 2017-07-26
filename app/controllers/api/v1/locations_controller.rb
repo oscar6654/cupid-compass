@@ -28,4 +28,12 @@ class Api::V1::LocationsController < ApplicationController
     selected_location_id = params[:id].to_i
     render json: Location.find(selected_location_id)
   end
+
+  def search
+    data = JSON.parse(request.body.read)['query']
+    @locations = Location
+      .where('name like ? or description like ? or city like ? or state like ?',
+             data, data, data, data)
+    render json: @locations
+  end
 end
