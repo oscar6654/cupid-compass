@@ -8,7 +8,6 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
   <header>
     <nav class="nav-extended">
       <div class="nav-wrapper teal lighten-1">
@@ -64,6 +63,16 @@
       </div>
     </nav>
   </header>
+<body>
+    <div class="section white">
+      <div class="row container">
+        <h2 class="header">Parallax</h2>
+        <p class="grey-text text-darken-3 lighten-3">Parallax is an effect where the background content or image in this case, is moved at a different speed than the foreground content while scrolling.</p>
+      </div>
+    </div>
+    <div class="parallax-container">
+      <div class="parallax parallax-container"><img src="<%= asset_path('background.jpg')%>"></div>
+    </div>
 
     <% if flash[:notice] %>
       <script type="text/javascript">
