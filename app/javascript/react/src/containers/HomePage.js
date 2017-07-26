@@ -2,26 +2,34 @@ import React, { Component } from 'react';
 import LocationForm from './LocationForm';
 import { Link } from 'react-router-dom';
 import LocationIndexTile from '../components/LocationIndexTile'
+import App from './App'
 import SearchInput, {createFilter} from 'react-search-input'
+
 
 const KEYS_TO_FILTERS = ['name', 'description', 'city', 'state']
 
-class Locations extends Component {
+class HomePage extends Component {
   constructor(props) {
     super(props)
+
     this.state = {
       locations: [],
-      formShow: false,
-      showUser: false,
+      showUser:false,
+      searchQuery: '',
       searchTerm: ''
     }
-    this.handleFormShow = this.handleFormShow.bind(this);
-    this.createLocation = this.createLocation.bind(this);
+    this.searchInput = this.searchInput.bind(this);
     this.searchUpdated = this.searchUpdated.bind(this);
   }
 
   componentDidMount() {
-    fetch('/api/v1/locations')
+    let search = document.getElementById('search').getAttribute('data-id');
+    let body = JSON.stringify({query: search})
+    fetch('/api/v1/locations/search', {
+      method: 'POST',
+      body: body,
+      credentials: "same-origin"
+    })
     .then(response => response.json())
     .then(body => {
       this.setState({ locations: body})
@@ -36,24 +44,8 @@ class Locations extends Component {
     })
   }
 
-  createLocation(payload) {
-    fetch('/api/v1/locations', {
-      method: 'POST',
-      credentials: "same-origin",
-      body: JSON.stringify(payload)
-    })
-    .then(response => response.json())
-    .then(body => {
-      this.setState({formShow:false})
-      let newLocations = this.state.locations.slice()
-      newLocations.unshift(body)
-      this.setState({ locations: newLocations, random: `${Math.floor(Math.random() * 10) + 1}` })
-    })
-  }
-
-  handleFormShow(event) {
-    event.preventDefault()
-    this.setState({formShow: !this.state.formShow})
+  searchInput(event){
+    this.setState({ searchQuery: event.target.value })
   }
 
   searchUpdated (term) {
@@ -96,22 +88,20 @@ class Locations extends Component {
         button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Add Location</button>
       }
     }
-
     return(
 
       <div>
         <SearchInput className="search-input" onChange={this.searchUpdated} />
         <div className="padding-button row">
-          {button}
+        {button}
         </div>
         {form}
         <div className="row">
-          {locations}
+        {locations}
         </div>
       </div>
-
     )
   }
 }
 
-export default Locations
+export default HomePage
