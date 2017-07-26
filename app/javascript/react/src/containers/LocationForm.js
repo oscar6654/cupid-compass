@@ -116,8 +116,6 @@ class LocationForm extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
 
-    debugger;
-
     if (Object.keys(this.state.errorObj).length === 0) {
       let formPayload = {
         name: this.state.name,
@@ -257,16 +255,18 @@ class LocationForm extends Component {
           errorMessage = this.state.errorObj[fieldCategory]
         }
 
-        <p>{errorMessage}</p>
         return(
-          <SelectField
-            key={index}
-            name="state"
-            label="State"
-            value={this.state.state}
-            handleChange={this.handleChange}
-            options={states}
-          />
+          <div key={index}>
+            <p>{errorMessage}</p>
+            <SelectField
+              key={index}
+              name="state"
+              label="State"
+              value={this.state.state}
+              handleChange={this.handleChange}
+              options={states}
+            />
+          </div>
         )
       } else {
         let errorMessage = ""
