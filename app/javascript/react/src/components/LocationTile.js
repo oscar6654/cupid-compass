@@ -1,6 +1,26 @@
 import React from 'react';
 
 const LocationTile = props => {
+
+  let button;
+
+  if (props.showUser){
+    button = <button
+                type="button"
+                className="btn waves-effect waves-light"
+                onClick={props.handleFormShow}>
+                {props.buttonText}
+                </button>
+  } else {
+
+    button = <a
+                href="/users/sign_in"
+                className="btn waves-effect waves-light">
+                Sign In
+                </a>
+
+  }
+
   return (
     <div className="col s12">
       <div className="card horizontal">
@@ -17,7 +37,7 @@ const LocationTile = props => {
             </ul>
           </div>
           <div className="card-action">
-            <button type="button" className="btn waves-effect waves-light" onClick={props.handleFormShow}>{props.buttonText}</button>
+            {button}
           </div>
         </div>
       </div>
