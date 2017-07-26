@@ -27,8 +27,6 @@ class LocationForm extends Component {
       }
     }
 
-
-
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
     this.handleClearForm = this.handleClearForm.bind(this);
@@ -125,10 +123,6 @@ class LocationForm extends Component {
     }
   }
 
-  // componentDidMount() {
-  //
-  // }
-
   handleFormSubmit(event) {
     event.preventDefault();
 
@@ -147,7 +141,8 @@ class LocationForm extends Component {
 
       this.props.createLocation(formPayload);
       this.handleClearForm(event);
-    } else {
+    }
+    else {
       let currentFieldEntries = Object.entries(this.state)
       .filter( entry => entry[0] !== 'errorObj' )
 
@@ -181,11 +176,9 @@ class LocationForm extends Component {
     })
   }
 
-
-
   render() {
     if (Object.entries(this.state.errorObj).length !== 0) {
-      console.log("state after render: " + Object.keys(this.state.errorObj))
+      console.log("state after render: " + Object.entries(this.state.errorObj))
     }
 
     let states = [
@@ -258,17 +251,12 @@ class LocationForm extends Component {
     fieldCategories.pop() //removes the errorObj field from the categories array
 
     let textFields = fieldCategories.map( (fieldCategory, index) => {
-
-      let errorMessage = ""
-      if(Object.keys(this.state.errorObj).length !== 0) {
-        errorMessage = this.state.errorObj[fieldCategory]
-      }
-
+      console.log(`error message for ${fieldCategory}: ${this.state.errorObj[fieldCategory]}`)
       if (fieldCategory === "description") {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={errorMessage}
+              errorMessage={this.state.errorObj[fieldCategory]}
             />
             <TextArea
               key={index}
@@ -283,7 +271,7 @@ class LocationForm extends Component {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={errorMessage}
+              errorMessage={this.state.errorObj[fieldCategory]}
             />
             <SelectField
               key={index}
@@ -299,7 +287,7 @@ class LocationForm extends Component {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={errorMessage}
+              errorMessage={this.state.errorObj[fieldCategory]}
             />
             <TextField
               key={index}
