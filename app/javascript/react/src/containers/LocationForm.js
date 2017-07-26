@@ -17,13 +17,13 @@ class LocationForm extends Component {
       zip: "",
       url: "",
       errorObj: {
-        name: "",
-        description: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        url: ""
+        name: this.errorDictionary('name', '').message,
+        description: this.errorDictionary('description', '').message,
+        address: this.errorDictionary('address', '').message,
+        city: this.errorDictionary('city', '').message,
+        state: this.errorDictionary('state', '').message,
+        zip: this.errorDictionary('zip', '').message,
+        url: this.errorDictionary('url', '').message
       }
     }
 
@@ -43,7 +43,7 @@ class LocationForm extends Component {
       case 'name':
         return {
           conditional: (value) => {
-            return ((value.length < 2) || (value === ""))
+            return ((value.length < 2) || (value.trim() === ""))
           },
           message: "name must be a minimum of 2 characters in length"
         };
@@ -53,7 +53,7 @@ class LocationForm extends Component {
             return (
               (value.length <= 50) ||
               (value.length >= 1000) ||
-              (value === "")
+              (value.trim() === "")
             )
           },
           message: "description must be a minimum of 50 characters and no more than 1000 characters in length"
@@ -61,14 +61,14 @@ class LocationForm extends Component {
       case 'address':
         return {
           conditional: (value) => {
-            return ((value.length < 2) || (value === ""))
+            return ((value.length < 2) || (value.trim() === ""))
           },
           message: "address must be a minimum of 2 characters in length"
         };
       case 'city':
         return {
           conditional: (value) => {
-            return ((value.length < 2) || (value === ""))
+            return ((value.length < 2) || (value.trim() === ""))
           },
           message: "city must be a minimum of 2 characters in length"
         };
@@ -76,7 +76,7 @@ class LocationForm extends Component {
         return {
           conditional: (value) => {
             let regexp = /^[0-9]{5}$/;
-            return ((!value.match(regexp)) || (value === ""))
+            return ((!value.match(regexp)) || (value.trim() === ""))
           },
           message: "zip code must be exactly 5 numbers long (and numeric)"
         };
@@ -85,7 +85,7 @@ class LocationForm extends Component {
           conditional: (value) => {
             let regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
             return (
-              (value !== '') &&
+              (value.trim() !== '') &&
               (!value.match(regexp))
             )
           },
@@ -94,7 +94,7 @@ class LocationForm extends Component {
       case 'state':
         return {
           conditional: (value) => {
-            return (value === '')
+            return (value.trim() === '')
           },
           message: "please select a state from the dropdown menu"
         };
@@ -165,13 +165,13 @@ class LocationForm extends Component {
       zip: "",
       url: "",
       errorObj: {
-        name: "",
-        description: "",
-        address: "",
-        city: "",
-        state: "",
-        zip: "",
-        url: ""
+        name: this.errorDictionary('name', '').message,
+        description: this.errorDictionary('description', '').message,
+        address: this.errorDictionary('address', '').message,
+        city: this.errorDictionary('city', '').message,
+        state: this.errorDictionary('state', '').message,
+        zip: this.errorDictionary('zip', '').message,
+        url: this.errorDictionary('url', '').message
       }
     })
   }
