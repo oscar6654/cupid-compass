@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import TextField from '../components/TextField'
 import TextArea from '../components/TextArea'
 import SelectField from '../components/SelectField'
+import ErrorTile from '../components/ErrorTile'
 
 class LocationForm extends Component {
   constructor(props) {
@@ -15,8 +16,18 @@ class LocationForm extends Component {
       state: "",
       zip: "",
       url: "",
-      errorObj: {}
+      errorObj: {
+        name: "",
+        description: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        url: ""
+      }
     }
+
+
 
     this.handleChange = this.handleChange.bind(this);
     this.handleFormSubmit = this.handleFormSubmit.bind(this);
@@ -25,9 +36,8 @@ class LocationForm extends Component {
   }
 
   handleChange(event) {
-    if (!this.errorHandler(event.target.name, event.target.value)) {
-      this.setState({ [event.target.name]: event.target.value })
-    }
+    this.errorHandler(event.target.name, event.target.value)
+    this.setState({ [event.target.name]: event.target.value})
   }
 
   errorDictionary(fieldCategory, value) {
@@ -35,7 +45,7 @@ class LocationForm extends Component {
       case 'name':
         return {
           conditional: (value) => {
-            return (value.length < 2)
+            return ((value.length < 2) || (value === ""))
           },
           message: "name must be a minimum of 2 characters in length"
         };
@@ -44,7 +54,8 @@ class LocationForm extends Component {
           conditional: (value) => {
             return (
               (value.length <= 50) ||
-              (value.length >= 1000)
+              (value.length >= 1000) ||
+              (value === "")
             )
           },
           message: "description must be a minimum of 50 characters and no more than 1000 characters in length"
@@ -52,14 +63,14 @@ class LocationForm extends Component {
       case 'address':
         return {
           conditional: (value) => {
-            return (value.length < 2)
+            return ((value.length < 2) || (value === ""))
           },
           message: "address must be a minimum of 2 characters in length"
         };
       case 'city':
         return {
           conditional: (value) => {
-            return (value.length < 2)
+            return ((value.length < 2) || (value === ""))
           },
           message: "city must be a minimum of 2 characters in length"
         };
@@ -67,7 +78,7 @@ class LocationForm extends Component {
         return {
           conditional: (value) => {
             let regexp = /^[0-9]{5}$/;
-            return (!value.match(regexp))
+            return ((!value.match(regexp)) || (value === ""))
           },
           message: "zip code must be exactly 5 numbers long (and numeric)"
         };
@@ -76,7 +87,7 @@ class LocationForm extends Component {
           conditional: (value) => {
             let regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
             return (
-              (value === '') ||
+              (value !== '') &&
               (!value.match(regexp))
             )
           },
@@ -97,6 +108,7 @@ class LocationForm extends Component {
 
     if (errorRef.conditional(value)) {
       let newErrorObj = Object.assign( {}, this.state.errorObj, {[fieldCategory]: errorRef.message} );
+
       this.setState({ errorObj: newErrorObj });
     }
     else {
@@ -112,6 +124,10 @@ class LocationForm extends Component {
       }
     }
   }
+
+  // componentDidMount() {
+  //
+  // }
 
   handleFormSubmit(event) {
     event.preventDefault();
@@ -132,7 +148,14 @@ class LocationForm extends Component {
       this.props.createLocation(formPayload);
       this.handleClearForm(event);
     } else {
+      let currentFieldEntries = Object.entries(this.state)
+      .filter( entry => entry[0] !== 'errorObj' )
+
+      currentFieldEntries.forEach( (entry) => {
+        this.errorHandler(entry[0], entry[1])
+      })
       alert('you must complete all forms with the correct formatting before location can be added...there are still Errors in: ' + Object.keys(this.state.errorObj))
+      this.setState(this.state);
     }
   }
 
@@ -146,17 +169,24 @@ class LocationForm extends Component {
       state: "",
       zip: "",
       url: "",
-      errorObj: {}
+      errorObj: {
+        name: "",
+        description: "",
+        address: "",
+        city: "",
+        state: "",
+        zip: "",
+        url: ""
+      }
     })
   }
 
 
+
   render() {
-    // if (Object.entries(this.state.errorObj).length !== 0) {
-    //   console.log("state after render: " + Object.keys(this.state.errorObj))
-    // } else {
-    //   console.log("state after render: {}")
-    // }
+    if (Object.entries(this.state.errorObj).length !== 0) {
+      console.log("state after render: " + Object.keys(this.state.errorObj))
+    }
 
     let states = [
       {"": "Select State"},
@@ -228,17 +258,18 @@ class LocationForm extends Component {
     fieldCategories.pop() //removes the errorObj field from the categories array
 
     let textFields = fieldCategories.map( (fieldCategory, index) => {
-      let descriptionField;
-      let input;
-      if (fieldCategory === "description") {
-        let errorMessage = ""
-        if(Object.entries(this.state.errorObj).length !== 0) {
-          errorMessage = this.state.errorObj[fieldCategory]
-        }
 
+      let errorMessage = ""
+      if(Object.keys(this.state.errorObj).length !== 0) {
+        errorMessage = this.state.errorObj[fieldCategory]
+      }
+
+      if (fieldCategory === "description") {
         return(
           <div key={index}>
-            <p>{errorMessage}</p>
+            <ErrorTile
+              errorMessage={errorMessage}
+            />
             <TextArea
               key={index}
               name={fieldCategory}
@@ -248,16 +279,12 @@ class LocationForm extends Component {
             />
           </div>
         )
-      }
-      else if (fieldCategory == "state") {
-        let errorMessage = ""
-        if(Object.entries(this.state.errorObj).length !== 0) {
-          errorMessage = this.state.errorObj[fieldCategory]
-        }
-
+      } else if (fieldCategory == "state") {
         return(
           <div key={index}>
-            <p>{errorMessage}</p>
+            <ErrorTile
+              errorMessage={errorMessage}
+            />
             <SelectField
               key={index}
               name="state"
@@ -269,14 +296,11 @@ class LocationForm extends Component {
           </div>
         )
       } else {
-        let errorMessage = ""
-        if(Object.entries(this.state.errorObj).length !== 0) {
-          errorMessage = this.state.errorObj[fieldCategory]
-        }
-
         return(
           <div key={index}>
-            <p>{errorMessage}</p>
+            <ErrorTile
+              errorMessage={errorMessage}
+            />
             <TextField
               key={index}
               name={fieldCategory}
