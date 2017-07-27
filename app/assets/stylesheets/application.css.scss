@@ -27,8 +27,14 @@
 .padding-button {
   padding: 15px;
 }
-
+.compress {
+  height: 64px;
+}
 // $input-border-color: transparent;
 // $input-background: white;
 
 @import "materialize";
+
+.no-margins {
+  margin-bottom: 0px;
+}

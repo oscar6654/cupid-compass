@@ -304,7 +304,7 @@ class LocationForm extends Component {
       <div>
         <form className="form" onSubmit={this.handleFormSubmit}>
           {textFields}
-          <input type="submit" className="btn waves-effect waves-light" name="Submit"/>
+          <input type="submit" className="btn waves-effect waves-light red lighten-3" name="Submit"/>
         </form>
       </div>
     )
