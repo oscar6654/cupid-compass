@@ -11,8 +11,11 @@
   <header>
     <nav class="nav-extended">
       <div class="nav-wrapper">
-        <a href="<%= root_path %>" class=“brand-logo”><img style="max-height: 40px;" src='<%= asset_path('cupidLogo.svg') %>' alt=“”></a>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+        <%= link_to "Cupid Compass", root_path %>
+        <ul class="left hide-on-med-and-down">
+          <div class=“brand-logo”><img style="max-height: 60px;" src='<%= asset_path('cupidLogo.svg') %>' alt=''></div>
+        </ul>
         <ul class="right hide-on-med-and-down">
           <%= form_tag(search_locations_path, method: :get) do %>
           <li><%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %></li>

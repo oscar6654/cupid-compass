@@ -34,8 +34,8 @@ $(document).ready(function() {
       <tr>
         <td><%= link_to "#{user.first_name} #{user.last_name}", user %></td>
         <td><%= link_to user.email, user %></td>
-        <td><%= link_to "Edit User", edit_user_path(user), class: 'waves-effect waves-light btn' %></td>
-        <td><%= link_to "Delete User", user_path(user), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %></td>
+        <td><%= link_to "Edit User", edit_user_path(user), class: 'waves-effect waves-light btn red lighten-3' %></td>
+        <td><%= link_to "Delete User", user_path(user), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red' %></td>
       </tr>
       <% end %>
   </tbody>

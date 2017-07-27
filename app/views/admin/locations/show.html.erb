@@ -11,8 +11,8 @@
         <ul><b>Url:</b> <a href=<%= @location.url %> ></a> </ul>
       </div>
       <div class="card-action">
-        <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light" %>
-        <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+        <%= link_to "Edit Location", edit_admin_location_path(@location), class: "btn waves-effect waves-light red lighten-3" %>
+        <%= link_to "Delete Location", admin_location_path(@location), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red' %>
       </div>
     </div>
   </div>
@@ -27,8 +27,8 @@
             <%= review.body %></span>
         </div>
         <div class="card-action">
-          <%= link_to "Edit Review", edit_admin_review_path(review), class: "btn waves-effect waves-light" %>
-          <%= link_to "Delete Review", admin_review_path(review), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red accent-4' %>
+          <%= link_to "Edit Review", edit_admin_review_path(review), class: "btn waves-effect waves-light red lighten-3" %>
+          <%= link_to "Delete Review", admin_review_path(review), method: :delete, data: {confirm: "Are You Sure?"}, class: 'waves-effect waves-light btn red' %>
         </div>
       </div>
     </div>
