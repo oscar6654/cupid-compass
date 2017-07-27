@@ -8,7 +8,6 @@
     <%= csrf_meta_tags %>
   </head>
 
-  <body>
   <header>
     <nav class="nav-extended">
       <div class="nav-wrapper teal lighten-1">
@@ -64,6 +63,7 @@
       </div>
     </nav>
   </header>
+<body>
 
     <% if flash[:notice] %>
       <script type="text/javascript">
@@ -81,5 +81,31 @@
     <div class="container">
       <%= yield %>
     </div>
-  </body>
+</body>
+
+<footer class="page-footer light-green darken-2">
+
+       <div class="row">
+         <div class="col l6 s12">
+           <h5 class="white-text">Cupid's Compass team</h5>
+           <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+         </div>
+         <div class="col l4 offset-l2 s12">
+           <h5 class="white-text">Links</h5>
+           <ul>
+             <li><a class="grey-text text-lighten-3" href="#!">Greg</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Oscar</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Peter</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Jared</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="footer-copyright">
+       <div class="container">
+       © 2017 Cupid's Compass team
+       <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+       </div>
+   </footer>
+
 </html>
