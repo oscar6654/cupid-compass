@@ -5,4 +5,6 @@ class Review < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :location
+  has_many :votes
+
 end

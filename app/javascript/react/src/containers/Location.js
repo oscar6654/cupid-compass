@@ -13,7 +13,8 @@ class Location extends Component {
       random: "",
       reviews: [],
       locationId: null,
-      formShow: false
+      formShow: false,
+      showUser:false
     }
     this.handleFormShow = this.handleFormShow.bind(this)
     this.createReview = this.createReview.bind(this)
@@ -31,6 +32,13 @@ class Location extends Component {
     .then(response => response.json())
     .then(body => {
       this.setState({ reviews: body })
+    })
+    fetch('/api/v1/users',{
+      credentials: "same-origin"
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({showUser:body.auth})
     })
   }
 
@@ -80,6 +88,7 @@ class Location extends Component {
     let buttonText;
     let form = ""
 
+
     if (this.state.formShow){
       form = <ReviewForm
               createReview={this.createReview}
@@ -91,6 +100,7 @@ class Location extends Component {
       buttonText = "Add Review"
     }
 
+
     return(
       <div>
         <LocationTile
@@ -98,6 +108,7 @@ class Location extends Component {
           random={this.state.random}
           handleFormShow={this.handleFormShow}
           buttonText={buttonText}
+          showUser={this.state.showUser}
         />
         {form}
         {reviews}

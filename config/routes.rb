@@ -13,7 +13,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :locations, only: [:index, :create, :show] do
         post 'search', on: :collection
-        resources :reviews, only: [:index, :create, :show, :update, :edit]
+        resources :reviews, only: [:index, :create, :show, :update, :edit] do
+          resources :votes, only: [:create]
+        end
       end
       resources :users, only: [:index]
     end
