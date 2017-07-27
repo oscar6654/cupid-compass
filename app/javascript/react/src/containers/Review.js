@@ -66,12 +66,6 @@ class Review extends Component {
         <div className="col s12 m6">
           <div className="card horizontal">
             <div className="card-content black-text">
-<<<<<<< HEAD
-              <span className="card-title">User Name h</span>
-                Votes:{this.state.vote_count}|
-              <span className="black-text">Rating: {this.props.review.rating}<br/>
-                {this.props.review.body}</span>
-=======
             <div className="row">
               <div>
                 <div className="chip">
@@ -102,7 +96,6 @@ class Review extends Component {
                   <span className="black-text">Rating: {this.props.review.rating}<br/>
                   {this.props.review.body}</span>
               </div>
->>>>>>> master
             </div>
           </div>
           </div>
