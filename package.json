@@ -33,14 +33,26 @@
     "react-materialize": "^1.0.6",
     "react-router": "^4.1.1",
     "react-router-dom": "^4.1.2",
+    "react-search-input": "^0.11.2",
     "resolve-url-loader": "^2.1.0",
     "sass-loader": "^6.0.6",
     "style-loader": "^0.18.2",
-    "webpack": "^3.3.0",
+    "webpack": "^3.4.1",
     "webpack-manifest-plugin": "^1.2.1",
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "enzyme": "^2.9.1",
+    "jasmine-core": "^2.6.4",
+    "jasmine-enzyme": "^3.6.1",
+    "karma": "^1.7.0",
+    "karma-cli": "^1.0.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.4",
+    "karma-webpack": "^2.0.4",
+    "phantomjs-prebuilt": "^2.1.14",
+    "react-addons-test-utils": "^15.6.0",
+    "react-test-renderer": "^15.6.1",
     "webpack-dev-server": "^2.6.1"
   }
 }

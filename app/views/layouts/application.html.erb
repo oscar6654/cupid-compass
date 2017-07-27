@@ -15,6 +15,12 @@
         <li class="brand-logo">&nbsp;&nbsp;&nbsp;<%= link_to "Cupid's Compass", root_path %></li>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
+          <%= form_tag(search_locations_path, method: :get) do %>
+          <li><%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %></li>
+          <li>
+            <button class="btn-floating teal lighten-3" type="submit" name="action">
+            <i class="material-icons right" style='margin-top: -12px'>search</i></button>
+          </li>
           <% if current_user %>
               <% if current_user.admin %>
                   <li><%= link_to "All Locations List", admin_locations_path %></li>
@@ -25,6 +31,7 @@
             <%else%>
             <li><%=link_to "Sign In", new_user_session_path %></li>
             <li><%=link_to "Sign Up", new_user_registration_path %></li>
+            <% end %>
           <%end%>
         </ul>
         <ul class="side-nav" id="mobile-demo">
