@@ -25,6 +25,7 @@
                   <li><%= link_to "All Locations List", admin_locations_path %></li>
                   <li><%= link_to "All Users List", users_path %></li>
               <%end%>
+              <li><%= link_to "Magic Date Ball", location_path(rand(1..Location.all.length)) %> </li>  
             <li><%= link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
@@ -53,6 +54,7 @@
                   <li><%= link_to "All Locations List", admin_locations_path %></li>
                   <li><%= link_to "All Users List", users_path %></li>
               <%end%>
+            <li><%= link_to "Magic Date Ball", location_path(rand(1..Location.all.length)) %> </li>
             <li><%= link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
