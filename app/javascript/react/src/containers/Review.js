@@ -63,11 +63,27 @@ class Review extends Component {
     return(
       <div>
         <p>{this.state.voteMessage}</p>
-        <div className="col s12 m6">
-          <div className="card horizontal">
-            <div className="card-content black-text">
+        <div className="col s12">
+          <div className="card ">
             <div className="row">
-              <div>
+              <div className="col s2">
+                <div className="center-align">
+                  <Vote
+                    handleChange={this.handleVoteUp}
+                    button = "expand_less"
+                  />
+                </div>
+                <div >
+                  <p className="center-align">{this.state.vote_count}</p>
+                </div>
+                <div className="center-align">
+                  <Vote
+                    handleChange={this.handleVoteDown}
+                    button = "expand_more"
+                  />
+                </div>
+              </div>
+              <div className="col s10">
                 <div className="chip">
                   <img src={user_image}
                   alt="USERIMAGE"
@@ -75,33 +91,13 @@ class Review extends Component {
                   className= "circle" />
                   {user_name}
                 </div>
-                <div className="col s4">
-                  <div className="center-align">
-                    <Vote
-                      handleChange={this.handleVoteUp}
-                      button = "expand_less"
-                    />
-                  </div>
-                  <div >
-                    <p className="center-align">{this.state.vote_count}</p>
-                  </div>
-                  <div className="center-align">
-                    <Vote
-                      handleChange={this.handleVoteDown}
-                      button = "expand_more"
-                    />
-                  </div>
-                </div>
-              <div className="col s8">
-                  <span className="black-text">Rating: {this.props.review.rating}<br/>
-                  {this.props.review.body}</span>
+                <p>Rating: {this.props.review.rating}<br/>
+                {this.props.review.body}</p>
               </div>
             </div>
           </div>
-          </div>
         </div>
       </div>
-    </div>
     )
   }
 }
