@@ -42,6 +42,7 @@
     "webpack-merge": "^4.1.0"
   },
   "devDependencies": {
+    "karma": "^1.7.0",
     "webpack-dev-server": "^2.6.1"
   }
 }
