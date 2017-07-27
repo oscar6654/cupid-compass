@@ -1,0 +1,45 @@
+<style>
+  .container{
+    width: 100%;
+    max-width: initial;
+  }
+  .search-box{
+    margin: auto;
+    width: 50%;
+    opacity: 0.4;
+    color: white;
+  }
+  .search-button{
+    margin: auto;
+    width: 50%;
+    opacity: 0.5;
+    color: white;
+  }
+  .parallax-container {
+    height: 800px;
+  }
+</style>
+  <div class="row container">
+    <h2 class="header"><center>Cupid's Compass</center></h2>
+    <p class="grey-text text-darken-3 lighten-3"><center>Your guide into the world of dating.</center></p>
+  </div>
+  <div class="parallax-container">
+    <br />
+    <br />
+    <%= form_tag(search_locations_path, method: :get) do %>
+      <div class="search">
+        <div class="search-wrapper card search-box black">
+          <%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %>
+        </div>
+        <br />
+        <div class="center search-button">
+          <button class="btn black" type="submit" name="action">Search</button>
+        </div>
+      </div>
+    <%end%>
+    <div class="parallax parallax-container"><img src="<%= asset_path('background.jpg')%>"></div>
+  </div>
+  <div class="row container">
+    <h2 class="header"><center>placeholder</center></h2>
+    <p class="grey-text text-darken-3 lighten-3"><center>Some more text here</center></p>
+  </div>

@@ -15,11 +15,14 @@ class HomePage extends Component {
     this.state = {
       locations: [],
       showUser:false,
+      formShow: false,
       searchQuery: '',
       searchTerm: ''
     }
+    this.handleFormShow = this.handleFormShow.bind(this);
     this.searchInput = this.searchInput.bind(this);
     this.searchUpdated = this.searchUpdated.bind(this);
+    this.createLocation = this.createLocation.bind(this);
   }
 
   componentDidMount() {
@@ -44,8 +47,28 @@ class HomePage extends Component {
     })
   }
 
+  createLocation(payload) {
+    fetch('/api/v1/locations', {
+      method: 'POST',
+      credentials: "same-origin",
+      body: JSON.stringify(payload)
+    })
+    .then(response => response.json())
+    .then(body => {
+      this.setState({formShow:false})
+      let newLocations = this.state.locations.slice()
+      newLocations.unshift(body)
+      this.setState({ locations: newLocations, random: `${Math.floor(Math.random() * 10) + 1}` })
+    })
+  }
+
   searchInput(event){
     this.setState({ searchQuery: event.target.value })
+  }
+
+  handleFormShow(event) {
+    event.preventDefault()
+    this.setState({formShow: !this.state.formShow})
   }
 
   searchUpdated (term) {
