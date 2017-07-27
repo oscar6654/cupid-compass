@@ -3,16 +3,16 @@ import { mount } from 'enzyme';
 import React from 'react';
 import jasmineEnzyme from 'jasmine-enzyme';
 
-describe('TextArea', () => {
-  let name,
-      content,
-      wrapper;
-
-  beforeEach( () => {
-    wrapper = mount{
-      <TextArea
-
-      />
-    }
-  })
-})
+// describe('TextArea', () => {
+//   let name,
+//       content,
+//       wrapper;
+//
+//   beforeEach( () => {
+//     wrapper = mount{
+//       <TextArea
+//
+//       />
+//     }
+//   })
+// })
