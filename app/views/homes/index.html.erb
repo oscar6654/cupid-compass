@@ -20,11 +20,7 @@
   }
 </style>
 
-  <div class="row container">
-    <h2 class="header"><center>Cupid's Compass</center></h2>
-    <p class="grey-text text-darken-3 lighten-3"><center>Your guide into the world of dating.</center></p>
-  </div>
-  <div class="parallax-container">
+  <div style="width:100%;" class="parallax-container">
     <br />
     <br />
     <%= form_tag(search_locations_path, method: :get) do %>
@@ -40,6 +36,7 @@
     <%end%>
     <div class="parallax parallax-container"><img src="<%= asset_path('background.jpg')%>"></div>
   </div>
+
   <div class="row container">
     <h2 class="header"><center>placeholder</center></h2>
     <p class="grey-text text-darken-3 lighten-3"><center>Some more text here</center></p>
