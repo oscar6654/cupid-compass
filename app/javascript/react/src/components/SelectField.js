@@ -4,7 +4,7 @@ import { Row, Input, Button, Icon } from 'react-materialize'
 const SelectField = (props) =>{
   let selectorOptions = props.options.map( (option, index) => {
     return (
-        <option key={(index + 1)} value={Object.keys(option)[0]}>{Object.values(option)[0]}</option>
+        <option key={index} value={Object.keys(option)[0]}>{Object.values(option)[0]}</option>
     )
   })
 
