@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { states } from '../util/states';
-import { errorDictionary } from '../util/errorDictionary';
+import { errorDictionary } from '../util/locationErrorDictionary';
 import { isObjectEmpty } from '../util/jqueryTranslations';
 import TextField from '../components/TextField';
 import TextArea from '../components/TextArea';
@@ -36,8 +36,6 @@ class LocationForm extends Component {
 
   errorHandler(fieldCategory, value) {
     let errorRef = errorDictionary(fieldCategory);
-
-    // console.log(`ERROR HANDLER - FIELD: ${fieldCategory}`)
 
     if (errorRef.conditional(value)) {
       if (!this.state.errorList.includes(fieldCategory)) {
