@@ -21,5 +21,5 @@
 $(document).ready(function() {
   Materialize.updateTextFields();
   $(".button-collapse").sideNav();
-
+  $('.parallax').parallax();
 });

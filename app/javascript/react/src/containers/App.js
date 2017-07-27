@@ -1,6 +1,6 @@
 import React from 'react';
 import NavBar from '../components/NavBar';
-import { Route, Switch,browserHistory } from 'react-router';
+import { Route, Switch, browserHistory } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
 import { BrowserRouter, Link } from 'react-router-dom';
 import Locations from './Locations';

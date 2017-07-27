@@ -16,7 +16,7 @@
  *= require_tree .
  *= require_self
  */
-@import "materialize";
+
 
 .pagination a li.active{
   color: #fff;
@@ -29,7 +29,11 @@
 }
 
 .error-message {
-  white-space: pre-wrap;
   color: red;
-  font-size: 13px
+  font-size: 13px;
 }
+
+// $input-border-color: transparent;
+// $input-background: white;
+
+@import "materialize";
