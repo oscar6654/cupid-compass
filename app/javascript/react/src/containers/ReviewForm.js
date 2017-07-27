@@ -56,13 +56,8 @@ class ReviewForm extends Component {
 
     if (updatedErrorList.length === 0) {
       let formPayload = {
-        name: this.state.name,
-        description: this.state.description,
-        address: this.state.address,
-        city: this.state.city,
-        state: this.state.state,
-        zip: this.state.zip,
-        url: this.state.url
+        body: this.state.body,
+        rating: this.state.rating
       }
 
       this.props.createReview(formPayload);
