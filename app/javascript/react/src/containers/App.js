@@ -1,14 +1,14 @@
 import React from 'react';
-// import {Router,browserHistory,Route,IndexRoute} from 'react-router';
 import NavBar from '../components/NavBar';
-import { Route, Switch } from 'react-router';
+import { Route, Switch,browserHistory } from 'react-router';
 import createBrowserHistory from 'history/createBrowserHistory';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Link } from 'react-router-dom';
 import Locations from './Locations';
 import LocationForm from './LocationForm';
 import Location from './Location';
 import Review from './Review';
 import ReviewForm from './ReviewForm'
+import HomePage from './HomePage'
 
 const history = createBrowserHistory();
 
@@ -17,6 +17,7 @@ const App = props =>{
     <div>
       <BrowserRouter history={history}>
         <Switch>
+          <Route exact path='/locations/search/' component={HomePage} />
           <Route exact path='/locations' component={Locations} />
           <Route exact path='/locations/new' component={LocationForm} />
           <Route exact path='/locations/:id' component={Location} />

@@ -11,7 +11,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
 
   let!(:location_1) {Location.create(
         name: "Antonios",
-        description: "Good Eats",
+        description: "Good Eats, good dates, good times to be had all around; This place has it all! I give two thumbs waaaaaay up.",
         address: "15 Hancock Street",
         city: "Lexington",
         state: "MN",
@@ -29,9 +29,10 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
         expect(response.status).to eq 200
         expect(response.content_type).to eq("application/json")
 
+
         expect(returned_json.length).to eq 1
         expect(returned_json[0]['name']).to eq "Antonios"
-        expect(returned_json[0]['description']).to eq "Good Eats"
+        expect(returned_json[0]['description']).to eq "Good Eats, good dates, good times to be had all around; This place has it all! I give two thumbs waaaaaay up."
         expect(returned_json[0]['address']).to eq "15 Hancock Street"
         expect(returned_json[0]['city']).to eq "Lexington"
         expect(returned_json[0]['state']).to eq "MN"
@@ -49,7 +50,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
         expect(response.content_type).to eq("application/json")
 
         expect(returned_json['name']).to eq "Antonios"
-        expect(returned_json['description']).to eq "Good Eats"
+        expect(returned_json['description']).to eq "Good Eats, good dates, good times to be had all around; This place has it all! I give two thumbs waaaaaay up."
         expect(returned_json['address']).to eq "15 Hancock Street"
         expect(returned_json['city']).to eq "Lexington"
         expect(returned_json['state']).to eq "MN"
@@ -61,7 +62,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
       it "should create a location with the correct info if the user is signed in" do
         post_json = {
           name: "Sail Loft",
-          description: "Dive Bar",
+          description: "Dive Bar so divey that it caters exclusively to humpback whales (this is an awesome reference to the humpback whale's famed ability to dive down relly far)",
           address: "100 Main st",
           city: "Boston",
           state: "Ma",
@@ -80,7 +81,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
         expect(returned_json).to be_kind_of(Hash)
         expect(returned_json).to_not be_kind_of(Array)
         expect(returned_json['name']).to eq "Sail Loft"
-        expect(returned_json['description']).to eq "Dive Bar"
+        expect(returned_json['description']).to eq "Dive Bar so divey that it caters exclusively to humpback whales (this is an awesome reference to the humpback whale's famed ability to dive down relly far)"
         expect(returned_json['address']).to eq "100 Main st"
         expect(returned_json['city']).to eq "Boston"
         expect(returned_json['state']).to eq "Ma"
@@ -91,7 +92,7 @@ RSpec.describe Api::V1::LocationsController, type: :controller do
       it "should not create a location when the user is not signed in" do
         post_json = {
           name: "Sail Loft",
-          description: "Dive Bar",
+          description: "Dive Bar so divey that it caters exclusively to humpback whales (this is an awesome reference to the humpback whale's famed ability to dive down relly far)",
           address: "100 Main st",
           city: "Boston",
           state: "Ma",

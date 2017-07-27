@@ -1,0 +1,11 @@
+<h3> Search Results </h3>
+
+<div id='search' data-id=<%=@search %>></div>
+  <%= javascript_pack_tag 'application' %>
+<div id="search-page"/>
+<br />
+
+<% if @locations.empty? %>
+<p> No Results found. </p>
+
+<% end %>
