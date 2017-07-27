@@ -23,12 +23,21 @@ class Api::V1::ReviewsController < ApplicationController
   end
 
   def index
-    reviews = Review.where(location_id: params[:location_id]).order(created_at: :desc)
+    reviews = Review.where(location_id: params[:location_id]).order(rating: :desc, created_at: :desc)
     render json: reviews, include: ["user"]
   end
-
+  #
   def show
     review = Review.find(params[:id])
     render json: review
   end
+  # #
+  # # def update
+  # #   data = JSON.parse(request.body.read)
+  # #   new_vote_count = data["new_vote"]
+  # #   review = Review.find(params[:id])
+  # #   review.vote_count = new_vote_count
+  # #   review.save
+  # #   render json: review, include: ["user"]
+  # # end
 end
