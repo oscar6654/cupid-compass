@@ -15,7 +15,7 @@ class Api::V1::ReviewsController < ApplicationController
       @creator = Location.find(params[:location_id]).user
 
       ReviewMailer.new_review(data, current_user, @location, @creator).deliver
-      render json: new_review
+      render json: new_review, include: ["user"]
     else
       error = { message: 'You must be logged in to create a review' }
       render json: error
@@ -24,7 +24,7 @@ class Api::V1::ReviewsController < ApplicationController
 
   def index
     reviews = Review.where(location_id: params[:location_id]).order(created_at: :desc)
-    render json: reviews
+    render json: reviews, include: ["user"]
   end
 
   def show
