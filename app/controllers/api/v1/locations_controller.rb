@@ -32,7 +32,7 @@ class Api::V1::LocationsController < ApplicationController
   def search
     data = JSON.parse(request.body.read)['query']
     @locations = Location
-      .where('name like ? or description like ? or city like ? or state like ?',
+      .where('name ilike ? or description ilike ? or city ilike ? or state ilike ?',
              data, data, data, data)
     render json: @locations
   end

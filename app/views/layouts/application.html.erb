@@ -10,14 +10,14 @@
 
   <header>
     <nav class="nav-extended">
-      <div class="nav-wrapper teal lighten-1">
+      <div class="nav-wrapper lime darken-4">
         <li class="brand-logo">&nbsp;&nbsp;&nbsp;<%= link_to "Cupid's Compass", root_path %></li>
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <ul class="right hide-on-med-and-down">
           <%= form_tag(search_locations_path, method: :get) do %>
           <li><%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %></li>
           <li>
-            <button class="btn-floating teal lighten-3" type="submit" name="action">
+            <button class="btn-floating lime darken-2" type="submit" name="action">
             <i class="material-icons right" style='margin-top: -12px'>search</i></button>
           </li>
           <% if current_user %>
@@ -83,7 +83,7 @@
     </div>
 </body>
 
-<footer class="page-footer light-green darken-2">
+<footer class="page-footer lime darken-4">
 
        <div class="row">
          <div class="col l6 s12">

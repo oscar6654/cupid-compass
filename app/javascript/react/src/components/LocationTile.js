@@ -28,7 +28,6 @@ const LocationTile = props => {
           <div className="card-image">
             <img src={props.random} />
           </div>
-<<<<<<< HEAD
           <div className="card-stacked">
             <div className="card-content">
               <span className="card-title">{props.locationInfo.name}</span>
@@ -41,10 +40,6 @@ const LocationTile = props => {
             <div className="card-action">
               <button type="button" className="btn waves-effect waves-light" onClick={props.handleFormShow}>{props.buttonText}</button>
             </div>
-=======
-          <div className="card-action">
-            {button}
->>>>>>> master
           </div>
         </div>
       </Col>
