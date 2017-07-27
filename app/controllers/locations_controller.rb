@@ -3,7 +3,7 @@ class LocationsController < ApplicationController
     query = "%#{params[:query].downcase}%"
     @search = query
     @locations = Location
-      .where('lower(name) like ? or description like ? or city like ? or state like ?',
+      .where('lower(name) like ? or lower(description) like ? or lower(city) like ? or lower(state) like ?',
              query, query, query, query)
   end
 end
