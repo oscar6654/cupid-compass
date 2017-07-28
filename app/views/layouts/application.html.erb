@@ -28,7 +28,7 @@
                   <li><%= link_to "All Locations List", admin_locations_path %></li>
                   <li><%= link_to "All Users List", users_path %></li>
               <%end%>
-              <li><%= link_to "Magic Date Ball", location_path(rand(1..Location.all.length)) %> </li>  
+              <li><%= link_to "Magic Date Ball", location_path(rand(1..Location.all.length)) %> </li>
             <li><%= link_to "Profile", current_user %> </li>
             <li><%= link_to "Sign out", destroy_user_session_path, :method => :delete %></li>
             <%else%>
@@ -91,16 +91,18 @@
 <footer class="page-footer">
      <div class="row">
        <div class="col l6 s12">
-         <h5 class="white-text">Cupid's Compass team</h5>
-         <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+         <h5 class="white-text">A Message from the Cupid Squad:</h5>
+         <p class="grey-text text-lighten-4">Not all dating locations have been pre-approved by the Cupid's Compass (CC) team. </br>
+           The team is not liable for any lousy dates, rude waiters, or awkward conversation. The CC team is unable to provide
+         signficant others for your dating experience. </br>All dates are strictly Bring Your Own Date (BYOD)!</p>
        </div>
        <div class="col l4 offset-l2 s12">
-         <h5 class="white-text">Links</h5>
+         <h5 class="white-text">Meet Your Guides!</h5>
          <ul>
            <li><a class="grey-text text-lighten-3" href="#!">Greg</a></li>
            <li><a class="grey-text text-lighten-3" href="#!">Oscar</a></li>
-           <li><a class="grey-text text-lighten-3" href="#!">Peter</a></li>
-           <li><a class="grey-text text-lighten-3" href="#!">Jared</a></li>
+           <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/ryhornalehach/">Peter</a></li>
+           <li><a class="grey-text text-lighten-3" href="https://www.linkedin.com/in/shulman-jared/">Jared</a></li>
          </ul>
        </div>
      </div>
@@ -108,7 +110,7 @@
    <div class="footer-copyright">
      <div class="container">
      © 2017 Cupid's Compass team
-     <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+     <a class="grey-text text-lighten-4 right" href="#!">New Features Coming Soon!</a>
      </div>
  </footer>
 

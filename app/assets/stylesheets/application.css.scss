@@ -16,7 +16,12 @@
  *= require_tree .
  *= require_self
  */
+@import url('https://fonts.googleapis.com/css?family=Josefin+Slab|Raleway');
+@import "materialize";
 
+html{
+  font-family: Raleway;
+}
 
 .pagination a li.active{
   color: #fff;
@@ -36,5 +41,3 @@
 
 // $input-border-color: transparent;
 // $input-background: white;
-
-@import "materialize";
