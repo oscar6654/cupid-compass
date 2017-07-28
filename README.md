@@ -38,6 +38,7 @@ Cupid's Compass was created using primarily [React JS](https://facebook.github.i
 
 The testing suite consists of Enzyme testing for React, RSpec for model testing, and Capybara for feature testing.
 
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 ## ToDo
 
 Categories:
