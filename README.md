@@ -4,8 +4,9 @@
 <p align="center">
 <img src="https://github.com/oscar6654/cupid-compass/blob/oscar6654-update-readme/app/assets/images/logo_small.png">
 </p>
-
-**The Love Sherpa // Your guide to romance // Because finding love it hard enough // The authority on all things dating // Making dating just a little easier**
+<p align="center">
+<b>The Love Sherpa | Your guide to romance | Because finding love it hard enough | The authority on all things dating | Making dating just a little easier</b>
+</p>
 
 ## Installation
 
@@ -31,7 +32,7 @@ Users are invited to explore the world of dating hot spots with Cupids Compass. 
 
 ## Development:
 
-Cupid's Compass was created using primarily React JS (React 15.6.1) on the front-end and Rails (Rails 5.1.2) on the back-end. Additional styling was implemented using [Materialize](http://materializecss.com/). User authentication and tangential features are implemented using Devise. Uploading user profile photo uses CarrierWave gem.
+Cupid's Compass was created using primarily [React JS](https://facebook.github.io/react/) (React 15.6.1) on the front-end and [Rails](http://rubyonrails.org/) (Rails 5.1.2) on the back-end. Additional styling was implemented using [Materialize](http://materializecss.com/). User authentication and tangential features are implemented using Devise. Uploading user profile photo uses CarrierWave gem.
 
 The testing suite consists of Enzyme testing for React, RSpec for model testing, and Capybara for feature testing.
 
