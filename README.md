@@ -23,6 +23,8 @@ rake db:migrate
 
 yarn start
 
+edit .env file with your keys
+
 rails s
 ```
 
