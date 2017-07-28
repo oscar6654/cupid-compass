@@ -23,12 +23,19 @@ const LocationTile = props => {
   }
 
   if (props.hot){
-    hot = <Icon>favorite_border</Icon>
   }
 
   let rating= props.locationInfo.average_review
   if (props.locationInfo.average_review){
-    rating= rating.toFixed(1)
+    if (rating > 0)
+    {rating= `Date-O-Meter: ${rating.toFixed(1)}/5`}
+    else {
+      rating = `No Reviews Yet!`
+    }
+  }
+
+  if (props.locationInfo.average_review > 4){
+    {hot = <Icon>favorite_border</Icon>}
   }
 
   return (
@@ -45,7 +52,7 @@ const LocationTile = props => {
               <ul>
                 <li>{props.locationInfo.address}</li>
                 <li>{props.locationInfo.city}, {props.locationInfo.state} {props.locationInfo.zip}</li>
-                <li>{hot}Date-O-Meter: {rating}/5</li>
+                <li>{hot}{rating}</li>
               </ul>
             </div>
             <div className="card-action">

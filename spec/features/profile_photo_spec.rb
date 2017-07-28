@@ -2,6 +2,9 @@ require "rails_helper"
 
 feature "profile photo" do
   scenario "user uploads a profile photo" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
     visit root_path
     first(:link, "Sign Up").click
     fill_in "First name", with: "Howard"
