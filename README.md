@@ -30,6 +30,8 @@ rails s
 
 ## About this Application:
 
+[Cupid's Compass](https://cupid-compass.herokuapp.com)
+
 Users are invited to explore the world of dating hot spots with Cupids Compass. Search based on restaurant/park/location, city or state and add your favorite romantic locale if it doesn't exist. Can't decide on a place? See reviews of other daters to help narrow down your decision. If your go-to spot doesn't exist, simply add it! Finally, if you're feeling extra adventurous, use the Magic Date Ball (tm) to find the randomized date spot of your wildest dreams!
 
 ## Development:
