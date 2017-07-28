@@ -13,6 +13,8 @@ feature "user edits info",
 
   scenario "Visitor logs in and visit the edit page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 
@@ -34,6 +36,8 @@ feature "user edits info",
 
   scenario "Visitor edits the information" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 
@@ -75,6 +79,8 @@ feature "user edits info",
 
   scenario "Visitor can't edit the information without a current password" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 
@@ -87,7 +93,7 @@ feature "user edits info",
 
     first(:link, "Profile").click
     first(:link, "Edit Profile").click
-    
+
     fill_in "First name", with: "Howard"
     fill_in "Last name", with: "Stark"
     fill_in "Email", with: "ash@s-mart.com"

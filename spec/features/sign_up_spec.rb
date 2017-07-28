@@ -12,6 +12,8 @@ feature "user signs up",
  # [X] If I specify valid information, i register my account and am validated
 
   scenario "specifying valid and required information" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff1@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
     visit root_path
 
     first(:link, "Sign Up").click
@@ -32,6 +34,9 @@ feature "user signs up",
   end
 
   scenario "specifying invalid and/or missing required information" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff1@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
     visit root_path
 
     first(:link, "Sign Up").click
@@ -52,6 +57,8 @@ feature "user signs up",
   end
 
   scenario "specifying valid and required information" do
+    user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
 
     #To test an alert message:
     # text = page.driver.browser.switch_to.alert.text

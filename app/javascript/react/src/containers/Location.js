@@ -112,7 +112,7 @@ class Location extends Component {
         />
         {form}
         {reviews}
-        <Link to='/locations' className="btn waves-effect waves-light red lighten-3">Back to Locations Index</Link>
+        <Link to='/locations' className="btn waves-effect waves-light red lighten-3">See All Locations</Link>
       </div>
     )
   }

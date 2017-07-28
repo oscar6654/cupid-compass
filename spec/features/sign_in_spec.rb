@@ -14,6 +14,8 @@ feature "user signs in",
 
   scenario "visitor fills out the log-in form" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 
@@ -33,6 +35,8 @@ feature "user signs in",
 
   scenario "visitor fills out the log-in form incorrectly" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 
@@ -51,6 +55,8 @@ feature "user signs in",
 
   scenario "visitor is signed in and visits sign_in page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
 

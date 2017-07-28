@@ -14,6 +14,8 @@ feature "admin can edit the users info",
   scenario "Admin logs in and visit the users index page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
     admin = User.create(first_name: "John", last_name: "Smith", email: "jsmith@example.com", password: "admin123", admin: true)
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
     first(:link, "Sign In").click
@@ -30,6 +32,8 @@ feature "admin can edit the users info",
 
   scenario "Visitor logs in not as admin and visit the users index page" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
     first(:link, "Sign In").click
@@ -46,6 +50,8 @@ feature "admin can edit the users info",
   scenario "Admin logs in and edit the user info" do
     user_1 = User.create(first_name: "David", last_name: "Hasselhoff", email: "theHoff@yahoo.com", password: "password")
     admin = User.create(first_name: "John", last_name: "Smith", email: "jsmith@example.com", password: "admin123", admin: true)
+    location_1 = Location.create(name: "Some place", description: "Very nice place", address: "Some str.", city: "Boston", state: "MA", zip: "02116", user_id: user_1.id)
+
 
     visit root_path
     first(:link, "Sign In").click
