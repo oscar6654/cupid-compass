@@ -7,7 +7,7 @@ const LocationTile = props => {
   if (props.showUser){
     button = <button
                 type="button"
-                className="btn waves-effect waves-light"
+                className="btn waves-effect waves-light red lighten-3"
                 onClick={props.handleFormShow}>
                 {props.buttonText}
                 </button>
@@ -15,7 +15,7 @@ const LocationTile = props => {
 
     button = <a
                 href="/users/sign_in"
-                className="btn waves-effect waves-light">
+                className="btn waves-effect waves-light red lighten-3">
                 Sign In
                 </a>
 
@@ -38,7 +38,7 @@ const LocationTile = props => {
               </ul>
             </div>
             <div className="card-action">
-              <button type="button" className="btn waves-effect waves-light" onClick={props.handleFormShow}>{props.buttonText}</button>
+              <button type="button" className="btn waves-effect waves-light red lighten-3" onClick={props.handleFormShow}>{props.buttonText}</button>
             </div>
           </div>
         </div>

@@ -26,7 +26,7 @@
     <%= form_tag(search_locations_path, method: :get) do %>
       <div class="search">
         <div class="search-wrapper card search-box black">
-          <%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %>
+          <%= text_field_tag 'query', params[:query], placeholder: '   I\'m looking for...' %>
         </div>
         <br />
         <div class="center search-button">
@@ -41,3 +41,28 @@
     <h4 class="header"><center>The authority on your <u>local</u> dating hot spots</center></h4>
     <h5 class="grey-text text-darken-3 lighten-3"><center>Because love is hard enough to find</center></h5>
   </div>
+
+  <footer class="page-footer">
+       <div class="row no-margins">
+         <div class="col l6 s12">
+           <h5 class="white-text">Cupid's Compass team</h5>
+           <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
+         </div>
+         <div class="col l4 offset-l2 s12 no-margins">
+           <h5 class="white-text">Links</h5>
+           <ul>
+             <li><a class="grey-text text-lighten-3" href="#!">Greg</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Oscar</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Peter</a></li>
+             <li><a class="grey-text text-lighten-3" href="#!">Jared</a></li>
+           </ul>
+         </div>
+       </div>
+     </div>
+     <div class="footer-copyright red lighten-1">
+       <div class="container">
+       © 2017 Cupid's Compass team
+       <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+       </div>
+    </div>
+   </footer>

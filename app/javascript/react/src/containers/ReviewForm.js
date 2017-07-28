@@ -144,7 +144,7 @@ class ReviewForm extends Component {
           options={options}
         />
 
-        <input type="submit" name="Submit" className="btn waves-effect waves-light" />
+        <input type="submit" name="Submit" className="btn waves-effect waves-light red lighten-3" />
       </form>
       <br />
       </div>
