@@ -1,9 +1,9 @@
 ![Build Status](https://codeship.com/projects/e058a580-4d34-0135-028e-2a4961856651/status?branch=master)
 ![Code Climate](https://codeclimate.com/github/oscar6654/cupid-compass.png)
 ![Coverage Status](https://coveralls.io/repos/oscar6654/cupid-compass/badge.png)
-
-Cupid's Compass
-![alt text](https://github.com/oscar6654/cupid-compass/blob/master/app/assets/images/cupidLogo.png "Cupid's Compass" )
+<p align="center">
+<img src="https://github.com/oscar6654/cupid-compass/blob/oscar6654-update-readme/app/assets/images/logo_small.png">
+</p>
 
 **The Love Sherpa // Your guide to romance // Because finding love it hard enough // The authority on all things dating // Making dating just a little easier**
 
@@ -23,7 +23,6 @@ rake db:migrate
 yarn start
 
 rails s
-
 ```
 
 ## About this Application:
