@@ -8,10 +8,11 @@ class Location < ActiveRecord::Base
   validates :state, presence: true, length: { minimum: 2 }
 
   belongs_to :user
-  has_many :reviews
+  has_many :reviews, dependent: :destroy
 
   after_touch do |location|
     total = location.reviews.pluck(:rating).inject {|sum, a| sum + a }.to_f
     location.average_review = total/location.reviews.length
+    location.save
   end
 end
