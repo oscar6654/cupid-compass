@@ -1,8 +1,11 @@
 import React, { Component } from "react";
-import TextField from '../components/TextField'
-import TextArea from '../components/TextArea'
-import SelectField from '../components/SelectField'
-import ErrorTile from '../components/ErrorTile'
+import { states } from '../util/states';
+import { errorDictionary } from '../util/locationErrorDictionary';
+import { isObjectEmpty } from '../util/jqueryTranslations';
+import TextField from '../components/TextField';
+import TextArea from '../components/TextArea';
+import SelectField from '../components/SelectField';
+import ErrorTile from '../components/ErrorTile';
 
 class LocationForm extends Component {
   constructor(props) {
@@ -16,15 +19,7 @@ class LocationForm extends Component {
       state: "",
       zip: "",
       url: "",
-      errorObj: {
-        name: this.errorDictionary('name', '').message,
-        description: this.errorDictionary('description', '').message,
-        address: this.errorDictionary('address', '').message,
-        city: this.errorDictionary('city', '').message,
-        state: this.errorDictionary('state', '').message,
-        zip: this.errorDictionary('zip', '').message,
-        url: this.errorDictionary('url', '').message
-      }
+      errorList: []
     }
 
     this.handleChange = this.handleChange.bind(this);
@@ -34,91 +29,26 @@ class LocationForm extends Component {
   }
 
   handleChange(event) {
-    this.errorHandler(event.target.name, event.target.value)
+    let updatedErrorList = this.errorHandler(event.target.name, event.target.value)
+    this.setState({ errorList: updatedErrorList })
     this.setState({ [event.target.name]: event.target.value})
   }
 
-  errorDictionary(fieldCategory, value) {
-    switch(fieldCategory) {
-      case 'name':
-        return {
-          conditional: (value) => {
-            return ((value.length < 2) || (value.trim() === ""))
-          },
-          message: "name must be a minimum of 2 characters in length"
-        };
-      case 'description':
-        return {
-          conditional: (value) => {
-            return (
-              (value.length <= 50) ||
-              (value.length >= 1000) ||
-              (value.trim() === "")
-            )
-          },
-          message: "description must be a minimum of 50 characters and no more than 1000 characters in length"
-        };
-      case 'address':
-        return {
-          conditional: (value) => {
-            return ((value.length < 2) || (value.trim() === ""))
-          },
-          message: "address must be a minimum of 2 characters in length"
-        };
-      case 'city':
-        return {
-          conditional: (value) => {
-            return ((value.length < 2) || (value.trim() === ""))
-          },
-          message: "city must be a minimum of 2 characters in length"
-        };
-      case 'zip':
-        return {
-          conditional: (value) => {
-            let regexp = /^[0-9]{5}$/;
-            return ((!value.match(regexp)) || (value.trim() === ""))
-          },
-          message: "zip code must be exactly 5 numbers long (and numeric)"
-        };
-      case 'url':
-        return {
-          conditional: (value) => {
-            let regexp = /^(http|https):\/\/[a-z0-9]+([\-\.]{1}[a-z0-9]+)*\.[a-z]{2,5}(:[0-9]{1,5})?(\/.*)?$/i;
-            return (
-              (value.trim() !== '') &&
-              (!value.match(regexp))
-            )
-          },
-          message: "the url must either be a valid url or left blank"
-        };
-      case 'state':
-        return {
-          conditional: (value) => {
-            return (value.trim() === '')
-          },
-          message: "please select a state from the dropdown menu"
-        };
-    };
-  };
-
   errorHandler(fieldCategory, value) {
-    let errorRef = this.errorDictionary(fieldCategory, value);
+    let errorRef = errorDictionary(fieldCategory);
 
     if (errorRef.conditional(value)) {
-      let newErrorObj = Object.assign( {}, this.state.errorObj, {[fieldCategory]: errorRef.message} );
-
-      this.setState({ errorObj: newErrorObj });
+      if (!this.state.errorList.includes(fieldCategory)) {
+        return this.state.errorList.concat(fieldCategory)
+      } else {
+        return this.state.errorList
+      }
     }
     else {
-      if (Object.entries(this.state.errorObj).length !== 0) {
-        let newErrorObj = Object.keys(this.state.errorObj)
-          .filter( key => key !== fieldCategory)
-          .reduce( (result, current) => {
-            result[current] = this.state.errorObj[current];
-            return result;
-        }, {});
-
-        this.setState({ errorObj: newErrorObj })
+      if (this.state.errorList.length !== 0) {
+        return this.state.errorList.filter( field => field !== fieldCategory)
+      } else {
+        return this.state.errorList
       }
     }
   }
@@ -126,7 +56,13 @@ class LocationForm extends Component {
   handleFormSubmit(event) {
     event.preventDefault();
 
-    if (Object.keys(this.state.errorObj).length === 0) {
+    let updatedErrorList = Object.keys(this.state)
+    .filter( key => key !== 'errorList')
+    updatedErrorList = updatedErrorList.filter( category => {
+      return errorDictionary(category).conditional(this.state[category])
+    })
+
+    if (updatedErrorList.length === 0) {
       let formPayload = {
         name: this.state.name,
         description: this.state.description,
@@ -137,20 +73,12 @@ class LocationForm extends Component {
         url: this.state.url
       }
 
-      console.log(`Payload from within LocationForm: ${formPayload}`)
-
       this.props.createLocation(formPayload);
       this.handleClearForm(event);
     }
     else {
-      let currentFieldEntries = Object.entries(this.state)
-      .filter( entry => entry[0] !== 'errorObj' )
-
-      currentFieldEntries.forEach( (entry) => {
-        this.errorHandler(entry[0], entry[1])
-      })
-      alert('you must complete all forms with the correct formatting before location can be added...there are still Errors in: ' + Object.keys(this.state.errorObj))
-      this.setState(this.state);
+      this.setState({ errorList: updatedErrorList })
+      alert('you must complete all forms with the correct formatting before location can be added...')
     }
   }
 
@@ -164,99 +92,30 @@ class LocationForm extends Component {
       state: "",
       zip: "",
       url: "",
-      errorObj: {
-        name: this.errorDictionary('name', '').message,
-        description: this.errorDictionary('description', '').message,
-        address: this.errorDictionary('address', '').message,
-        city: this.errorDictionary('city', '').message,
-        state: this.errorDictionary('state', '').message,
-        zip: this.errorDictionary('zip', '').message,
-        url: this.errorDictionary('url', '').message
-      }
+      errorList: []
     })
   }
 
   render() {
-    if (Object.entries(this.state.errorObj).length !== 0) {
-      console.log("state after render: " + Object.entries(this.state.errorObj))
-    }
-
-    let states = [
-      {"": "Select State"},
-      {"AL": "Alabama"},
-      {"AK": "Alaska"},
-      {"AS": "American Samoa"},
-      {"AZ": "Arizona"},
-      {"AR": "Arkansas"},
-      {"CA": "California"},
-      {"CO": "Colorado"},
-      {"CT": "Connecticut"},
-      {"DE": "Delaware"},
-      {"DC": "District Of Columbia"},
-      {"FM": "Federated States Of Micronesia"},
-      {"FL": "Florida"},
-      {"GA": "Georgia"},
-      {"GU": "Guam"},
-      {"HI": "Hawaii"},
-      {"ID": "Idaho"},
-      {"IL": "Illinois"},
-      {"IN": "Indiana"},
-      {"IA": "Iowa"},
-      {"KS": "Kansas"},
-      {"KY": "Kentucky"},
-      {"LA": "Louisiana"},
-      {"ME": "Maine"},
-      {"MH": "Marshall Islands"},
-      {"MD": "Maryland"},
-      {"MA": "Massachusetts"},
-      {"MI": "Michigan"},
-      {"MN": "Minnesota"},
-      {"MS": "Mississippi"},
-      {"MO": "Missouri"},
-      {"MT": "Montana"},
-      {"NE": "Nebraska"},
-      {"NV": "Nevada"},
-      {"NH": "New Hampshire"},
-      {"NJ": "New Jersey"},
-      {"NM": "New Mexico"},
-      {"NY": "New York"},
-      {"NC": "North Carolina"},
-      {"ND": "North Dakota"},
-      {"MP": "Northern Mariana Islands"},
-      {"OH": "Ohio"},
-      {"OK": "Oklahoma"},
-      {"OR": "Oregon"},
-      {"PW": "Palau"},
-      {"PA": "Pennsylvania"},
-      {"PR": "Puerto Rico"},
-      {"RI": "Rhode Island"},
-      {"SC": "South Carolina"},
-      {"SD": "South Dakota"},
-      {"TN": "Tennessee"},
-      {"TX": "Texas"},
-      {"UT": "Utah"},
-      {"VT": "Vermont"},
-      {"VI": "Virgin Islands"},
-      {"VA": "Virginia"},
-      {"WA": "Washington"},
-      {"WV": "West Virginia"},
-      {"WI": "Wisconsin"},
-      {"WY": "Wyoming"}
-    ]
-
-    let fieldCategories = Object.keys(this.state).map( (key) => {
-      return key
+    let fieldCategories = Object.keys(this.state).filter( (key) => {
+      return key !== 'errorList'
     }); //array of field categories
 
-    fieldCategories.pop() //removes the errorObj field from the categories array
-
     let textFields = fieldCategories.map( (fieldCategory, index) => {
-      console.log(`error message for ${fieldCategory}: ${this.state.errorObj[fieldCategory]}`)
+
+      let showError = false
+      if (this.state.errorList.includes(fieldCategory)) {
+        showError = true
+      }
+
+      let errorMessage = errorDictionary(fieldCategory, this.state[fieldCategory]).message
+
       if (fieldCategory === "description") {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={this.state.errorObj[fieldCategory]}
+              errorMessage={errorMessage}
+              showError={showError}
             />
             <TextArea
               key={index}
@@ -271,7 +130,8 @@ class LocationForm extends Component {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={this.state.errorObj[fieldCategory]}
+              errorMessage={errorMessage}
+              showError={showError}
             />
             <SelectField
               key={index}
@@ -287,7 +147,8 @@ class LocationForm extends Component {
         return(
           <div key={index}>
             <ErrorTile
-              errorMessage={this.state.errorObj[fieldCategory]}
+              errorMessage={errorMessage}
+              showError={showError}
             />
             <TextField
               key={index}

@@ -30,6 +30,11 @@
 .compress {
   height: 64px;
 }
+.error-message {
+  white-space: pre-wrap;
+  color: red;
+  font-size: 13px;
+}
 
 @import "materialize";
 
