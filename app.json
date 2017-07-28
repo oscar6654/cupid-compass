@@ -1,0 +1,51 @@
+{
+  "name": "Cupid's Compass",
+  "description": "Love Site Review.",
+  "success_url": "/",
+  "keywords": [
+    "ruby on rails",
+    "react"
+  ],
+  "repository": "https://github.com/oscar6654/cupid-compass",
+  "scripts": {
+    "postdeploy": "bundle exec rake db:migrate"
+  },
+  "env": {
+    "RAILS_ENV": "production",
+    "SECRET_TOKEN": {
+      "description": "A secret key for verifying the integrity of signed cookies.",
+      "generator": "secret"
+    },
+    "AWS_ACCESS_KEY_ID": {
+      "description": "AWS ID KEY",
+      "value": "",
+      "required": true
+    },
+      "AWS_SECRET_ACCESS_KEY": {
+      "description": "AWS ACESS KEY",
+      "value": "",
+      "required": true
+    },
+      "S3_BUCKET": {
+      "description": "S3 BUCKET NAME",
+      "value": "",
+      "required": true
+    }
+  },
+  "image": "heroku/ruby",
+  "addons": [
+    {
+      "plan": "heroku-postgresql",
+      "options": {
+        "version": "9.5"
+      }
+    },
+    "sendgrid:starter"
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs",
+      "url": "heroku/ruby"
+    }
+  ]
+}
