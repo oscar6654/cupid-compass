@@ -21,12 +21,13 @@ class Api::V1::LocationsController < ApplicationController
   end
 
   def index
-    render json: Location.all.order(created_at: :desc)
+    render json: Location.all.order(average_review: :desc)
   end
 
   def show
-    selected_location_id = params[:id].to_i
-    render json: Location.find(selected_location_id)
+    location = Location.find(params[:id])
+    location.touch
+    render json: location
   end
 
   def search

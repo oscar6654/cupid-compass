@@ -1,8 +1,9 @@
 import React from 'react';
-import {Col, Row} from 'react-materialize'
+import {Col, Row, Icon} from 'react-materialize'
 const LocationTile = props => {
 
   let button;
+  let hot;
 
   if (props.showUser){
     button = <button
@@ -21,6 +22,15 @@ const LocationTile = props => {
 
   }
 
+  if (props.hot){
+    hot = <Icon>favorite_border</Icon>
+  }
+
+  let rating= props.locationInfo.average_review
+  if (props.locationInfo.average_review){
+    rating= rating.toFixed(1)
+  }
+
   return (
     <Row>
       <Col s={12}>
@@ -35,6 +45,7 @@ const LocationTile = props => {
               <ul>
                 <li>{props.locationInfo.address}</li>
                 <li>{props.locationInfo.city}, {props.locationInfo.state} {props.locationInfo.zip}</li>
+                <li>{hot}Date-O-Meter: {rating}/5</li>
               </ul>
             </div>
             <div className="card-action">

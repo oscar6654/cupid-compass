@@ -9,4 +9,9 @@ class Location < ActiveRecord::Base
 
   belongs_to :user
   has_many :reviews
+
+  after_touch do |location|
+    total = location.reviews.pluck(:rating).inject {|sum, a| sum + a }.to_f
+    location.average_review = total/location.reviews.length
+  end
 end

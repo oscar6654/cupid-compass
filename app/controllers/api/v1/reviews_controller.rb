@@ -11,6 +11,7 @@ class Api::V1::ReviewsController < ApplicationController
         user_id: current_user.id,
         vote_count: 0
         )
+        new_review.location.touch
       @location = Location.find(params[:location_id])
       @creator = Location.find(params[:location_id]).user
 
