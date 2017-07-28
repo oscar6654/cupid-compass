@@ -22,11 +22,9 @@ const LocationTile = props => {
 
   }
 
-  if (props.hot){
-  }
 
-  let rating= props.locationInfo.average_review
-  if (props.locationInfo.average_review){
+  let rating= props.average_review
+  if (props.average_review){
     if (rating > 0)
     {rating= `Date-O-Meter: ${rating.toFixed(1)}/5`}
     else {
@@ -34,7 +32,7 @@ const LocationTile = props => {
     }
   }
 
-  if (props.locationInfo.average_review > 4){
+  if (props.average_review > 4){
     {hot = <Icon>favorite_border</Icon>}
   }
 

@@ -1,5 +1,6 @@
 import React from 'react';
 import { BrowserRouter, Link } from 'react-router-dom';
+import { Icon } from 'react-materialize'
 
 const LocationIndexTile = props => {
 
@@ -7,11 +8,13 @@ const LocationIndexTile = props => {
   let score;
 
   if (props.location.average_review){
-    console.log(props.location)
     score = props.location.average_review.toFixed(1)
+  }
+    else{
+      score = `Not Reviewed Yet`
+    }
     if (props.location.average_review > 4)
     {hot = <Icon>favorite_border</Icon>}
-  }
 
   return(
     <div>
@@ -23,7 +26,7 @@ const LocationIndexTile = props => {
           <div className="card-content black-text">
             <span className="card-title"><a href={`/locations/${props.location.id}`}>{props.location.name}</a></span>
             <p>{props.descriptionString}</p>
-            <p>{score}</p>
+            <p>{hot}{score}</p>
             <br />
             <p><b>{props.location.city}, {props.location.state}</b></p>
           </div>

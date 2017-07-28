@@ -14,7 +14,8 @@ class Location extends Component {
       reviews: [],
       locationId: null,
       formShow: false,
-      showUser:false
+      showUser:false,
+      average_review: 0
     }
     this.handleFormShow = this.handleFormShow.bind(this)
     this.createReview = this.createReview.bind(this)
@@ -26,7 +27,7 @@ class Location extends Component {
     fetch(`/api/v1/locations/${locationId}`)
     .then(response => response.json())
     .then(location => {
-      this.setState({ locationInfo: location, random:  `https://lorempixel.com/350/350/city/${Math.floor(Math.random() * 10) + 1}`, locationId: locationId})
+      this.setState({ locationInfo: location, random:  `https://lorempixel.com/350/350/city/${Math.floor(Math.random() * 10) + 1}`, locationId: locationId,average_review: location.average_review})
     })
     fetch(`/api/v1/locations/${locationId}/reviews`)
     .then(response => response.json())
@@ -58,7 +59,8 @@ class Location extends Component {
     }).then(body => {
       let newReviews = this.state.reviews.slice()
       newReviews.unshift(body)
-      this.setState({ reviews: newReviews })
+      let newAverage = (body.rating + this.state.reviews.length*this.state.average_review)/(this.state.reviews.length+1)
+      this.setState({ reviews: newReviews,average_review: newAverage })
     })
   }
 
@@ -105,6 +107,7 @@ class Location extends Component {
       <div>
         <LocationTile
           locationInfo={this.state.locationInfo}
+          average_review = {this.state.average_review}
           random={this.state.random}
           handleFormShow={this.handleFormShow}
           buttonText={buttonText}
