@@ -9,14 +9,14 @@
   </head>
 
   <header>
-    <nav class="nav-extended">
+    <nav class="nav">
       <div class="nav-wrapper">
         <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
         <%= link_to "Cupid Compass", root_path %>
-        <ul class="left hide-on-med-and-down">
-          <div class=“brand-logo”><img style="max-height: 60px;" src='<%= asset_path('cupidLogo.svg') %>' alt=''></div>
+        <ul class="left hide-on-med-and-down compress">
+          <span class=""><img style="max-height: 60px;" src='<%= asset_path('cupidLogo.svg') %>' alt=''></span>
         </ul>
-        <ul class="right hide-on-med-and-down">
+        <ul class="right hide-on-med-and-down compress">
           <%= form_tag(search_locations_path, method: :get) do %>
           <li><%= text_field_tag 'query', params[:query], placeholder: 'I\'m looking for...' %></li>
           <li>
@@ -66,48 +66,22 @@
       </div>
     </nav>
   </header>
-<body>
-
-    <% if flash[:notice] %>
-      <script type="text/javascript">
-        Materialize.toast('<%= notice %>', 6000)
-      </script>
-    <% elsif flash[:error] %>
-      <script type="text/javascript">
-        Materialize.toast('<%= flash[:error] %>', 6000)
-      </script>
-    <% elsif flash[:alert] %>
-      <script type="text/javascript">
-        Materialize.toast('<%= alert %>', 6000)
-      </script>
-    <% end %>
-    <div class="container homepagestyle">
-      <%= yield %>
-    </div>
-</body>
-
-<footer class="page-footer">
-     <div class="row">
-       <div class="col l6 s12">
-         <h5 class="white-text">Cupid's Compass team</h5>
-         <p class="grey-text text-lighten-4">You can use rows and columns here to organize your footer content.</p>
-       </div>
-       <div class="col l4 offset-l2 s12">
-         <h5 class="white-text">Links</h5>
-         <ul>
-           <li><a class="grey-text text-lighten-3" href="#!">Greg</a></li>
-           <li><a class="grey-text text-lighten-3" href="#!">Oscar</a></li>
-           <li><a class="grey-text text-lighten-3" href="#!">Peter</a></li>
-           <li><a class="grey-text text-lighten-3" href="#!">Jared</a></li>
-         </ul>
-       </div>
-     </div>
-   </div>
-   <div class="footer-copyright">
-     <div class="container">
-     © 2017 Cupid's Compass team
-     <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
-     </div>
- </footer>
-
+  <body>
+      <% if flash[:notice] %>
+        <script type="text/javascript">
+          Materialize.toast('<%= notice %>', 6000)
+        </script>
+      <% elsif flash[:error] %>
+        <script type="text/javascript">
+          Materialize.toast('<%= flash[:error] %>', 6000)
+        </script>
+      <% elsif flash[:alert] %>
+        <script type="text/javascript">
+          Materialize.toast('<%= alert %>', 6000)
+        </script>
+      <% end %>
+      <div class="container homepagestyle">
+        <%= yield %>
+      </div>
+  </body>
 </html>

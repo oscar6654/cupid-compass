@@ -106,9 +106,9 @@ class HomePage extends Component {
     if (this.state.showUser) {
       if (this.state.formShow){
         form = <LocationForm createLocation={this.createLocation} />
-        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Hide Form</button>
+        button = <button type="button" className="btn waves-effect waves-light red lighten-3" onClick={this.handleFormShow}>Hide Form</button>
       } else {
-        button = <button type="button" className="btn waves-effect waves-light" onClick={this.handleFormShow}>Add Location</button>
+        button = <button type="button" className="btn waves-effect waves-light red lighten-3" onClick={this.handleFormShow}>Add Location</button>
       }
     }
     return(
